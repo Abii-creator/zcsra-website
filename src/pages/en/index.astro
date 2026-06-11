@@ -1,0 +1,101 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import SearchBar from "../../components/SearchBar.astro";
+import Hero from "../../components/Hero.astro";
+import MdMessage from "../../components/MdMessage.astro";
+import Announcements from "../../components/Announcements.astro";
+import QuickServices from "../../components/QuickServices.astro";
+import Events from "../../components/Events.astro";
+import StaffActivities from "../../components/StaffActivities.astro";
+import Partners from "../../components/Partners.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+---
+
+<BaseLayout title="Home - ZCSRA" lang="en">
+  <TopBar lang="en" />
+  <Header lang="en" />
+  <SearchBar lang="en" />
+  <Hero lang="en" />
+
+  <section class="home-dual">
+    <div class="container">
+      <div class="home-top">
+        <div class="md-col">
+          <MdMessage lang="en" />
+        </div>
+
+        <aside class="ann-col">
+          <Announcements lang="en" />
+        </aside>
+      </div>
+
+      <QuickServices lang="en" />
+    </div>
+  </section>
+
+  <Events lang="en" />
+  <StaffActivities lang="en" />
+  <Partners lang="en" />
+  <Footer lang="en" />
+  <WhatsAppFloat lang="en" />
+</BaseLayout>
+
+<style>
+.home-dual{
+  padding:20px 0 0 0;
+  overflow-x:hidden;
+}
+
+.home-top{
+  display:flex;
+  align-items:flex-start;
+  gap:20px;
+  width:100%;
+}
+
+.md-col{
+  flex:1 1 auto;
+  min-width:0;
+}
+
+.ann-col{
+  width:360px;
+  flex:0 0 360px;
+  min-width:0;
+}
+
+.home-top > *{
+  margin-top:0;
+}
+
+.home-top :global(.md-section),
+.home-top :global(.ann-shell){
+  width:100%;
+  min-width:0;
+  max-width:100%;
+}
+
+.ann-col :global(.ann-shell){
+  margin-top:0;
+  position:static;
+}
+
+:global(.qs-section){
+  margin-top:30px;
+  clear:both;
+}
+
+@media (max-width:1100px){
+  .home-top{
+    flex-direction:column;
+  }
+
+  .ann-col{
+    width:100%;
+    flex:1 1 auto;
+  }
+}
+</style>

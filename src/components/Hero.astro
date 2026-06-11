@@ -1,0 +1,133 @@
+---
+const { lang = "sw" } = Astro.props;
+
+const isSw = lang === "sw";
+
+const title = isSw
+  ? "Huduma Bora za Usajili kwa Wananchi"
+  : "Better Registration Services for Citizens";
+
+const subtitle = isSw
+  ? "Karibu katika tovuti rasmi ya Wakala wa Usajili wa Matukio ya Kijamii Zanzibar (ZCSRA). Kupitia tovuti hii unaweza kupata huduma, matangazo, na taarifa muhimu kwa urahisi."
+  : "Welcome to the official website of the Zanzibar Civil Status Registration Agency (ZCSRA). Through this portal you can access services, announcements and important information easily.";
+
+const btnServices = isSw ? "Huduma Zetu" : "Our Services";
+const btnAnnouncements = isSw ? "Matangazo" : "Announcements";
+
+const servicesLink = isSw ? "/sw/services" : "/en/services";
+const announcementsLink = isSw ? "/sw/announcements" : "/en/announcements";
+---
+
+<section class="hero">
+
+  <div class="container hero-inner">
+
+    <div class="hero-content">
+
+      <h1>{title}</h1>
+
+      <p>{subtitle}</p>
+
+      <div class="hero-buttons">
+
+        <a href={servicesLink} class="btn-primary">
+          {btnServices}
+        </a>
+
+        <a href={announcementsLink} class="btn-secondary">
+          {btnAnnouncements}
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+.hero{
+  background:linear-gradient(135deg,#153459,#1e3a5f);
+  color:#ffffff;
+  padding:80px 0;
+}
+
+.hero-inner{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero-content{
+  max-width:720px;
+}
+
+.hero h1{
+  font-size:44px;
+  font-weight:900;
+  margin-bottom:18px;
+  line-height:1.2;
+}
+
+.hero p{
+  font-size:16px;
+  line-height:1.8;
+  color:#e6eef7;
+  margin-bottom:28px;
+}
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.btn-primary{
+  background:#f6a313;
+  color:#ffffff;
+  padding:12px 24px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn-primary:hover{
+  background:#e3950f;
+}
+
+.btn-secondary{
+  background:#ffffff;
+  color:#153459;
+  padding:12px 24px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn-secondary:hover{
+  background:#f2f2f2;
+}
+
+@media (max-width:768px){
+
+.hero{
+  padding:60px 0;
+}
+
+.hero h1{
+  font-size:30px;
+}
+
+.hero p{
+  font-size:15px;
+}
+
+}
+
+</style>

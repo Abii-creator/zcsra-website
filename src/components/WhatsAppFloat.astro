@@ -1,0 +1,36 @@
+---
+const { lang = "sw" } = Astro.props;
+
+const label = "Chat with us";
+const text =
+  lang === "sw"
+    ? "Habari, naomba msaada kuhusu huduma za taasisi."
+    : "Hello, I need assistance about institution services.";
+
+const href = `https://wa.me/255700000000?text=${encodeURIComponent(text)}`;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noreferrer"
+  style="
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#1f7a3a;
+    color:#ffffff;
+    padding:14px 18px;
+    border-radius:14px;
+    font-weight:800;
+    box-shadow:0 12px 30px rgba(0,0,0,.22);
+    border:2px solid rgba(255,255,255,.18);
+  "
+>
+  <span style="font-size:22px;line-height:1;">🟢</span>
+  <span>{label}</span>
+</a>

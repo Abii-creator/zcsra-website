@@ -1,0 +1,72 @@
+---
+const { lang = "sw" } = Astro.props;
+
+const placeholder =
+  lang === "sw"
+    ? "Tafuta huduma, matangazo au matukio..."
+    : "Search services, announcements or events...";
+
+const buttonText = lang === "sw" ? "Tafuta" : "Search";
+---
+
+<section class="search-section">
+  <div class="container">
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder={placeholder}
+        class="search-input"
+      />
+
+      <button class="search-btn">
+        🔍 {buttonText}
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+.search-section{
+  padding:8px 0 10px 0;
+}
+
+.search-box{
+  background:#ffffff;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  padding:14px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.search-input{
+  flex:1;
+  border:1px solid #e4e6ea;
+  outline:none;
+  font-size:15px;
+  padding:12px 14px;
+  border-radius:12px;
+}
+
+.search-btn{
+  border:none;
+  padding:12px 18px;
+  border-radius:12px;
+  background:#f6a313;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+}
+
+@media (max-width:640px){
+  .search-box{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .search-btn{
+    width:100%;
+  }
+}
+</style>

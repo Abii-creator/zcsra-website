@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+---
+
+<BaseLayout title="Events" lang="en">
+  <TopBar lang="en" />
+  <Header lang="en" />
+  <Breadcrumbs lang="en" current="Events" />
+
+  <section style="padding:10px 0 0 0;">
+    <div class="container">
+      <div class="card" style="background:#ffffff;border-radius:24px;padding:34px;">
+
+        <div style="font-size:14px;font-weight:800;color:#f6a313;letter-spacing:2px;margin-bottom:10px;">
+          EVENTS
+        </div>
+
+        <h1 style="margin:0 0 20px 0;font-size:42px;color:#1e3a5f;font-weight:900;">
+          Institutional Events
+        </h1>
+
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+
+          <div class="card" style="background:#f8f9fb;padding:24px;border-radius:18px;">
+            <h3 style="margin:0 0 10px 0;color:#1e3a5f;">Birth Registration Seminar</h3>
+            <div style="font-size:13px;color:#8892a0;margin-bottom:10px;">15 March 2024</div>
+            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
+              Seminar for stakeholders on the importance of birth registration and access to official certificates.
+            </p>
+          </div>
+
+          <div class="card" style="background:#f8f9fb;padding:24px;border-radius:18px;">
+            <h3 style="margin:0 0 10px 0;color:#1e3a5f;">System Training Workshop</h3>
+            <div style="font-size:13px;color:#8892a0;margin-bottom:10px;">3 April 2024</div>
+            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
+              Training workshop for government officers on the use of the civil registration system.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="en" />
+  <WhatsAppFloat lang="en" />
+</BaseLayout>

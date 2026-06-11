@@ -1,0 +1,180 @@
+---
+const { lang = "sw" } = Astro.props;
+
+const isSw = lang === "sw";
+
+const title = isSw ? "Matangazo" : "Announcements";
+const readMore = isSw ? "Soma Zaidi" : "Read More";
+const viewAll = isSw ? "Tazama Matangazo Yote" : "View All Announcements";
+const listHref = isSw ? "/sw/announcements" : "/en/announcements";
+
+const allItems = isSw
+  ? [
+      {
+        title: "Mwongozo Mpya wa Usajili wa Vifo",
+        date: "22 Februari 2024",
+        text: "Serikali imetoa mwongozo mpya wa usajili wa vifo ili kuboresha huduma kwa wananchi."
+      },
+      {
+        title: "Kampeni ya Uhamasishaji Kuzinduliwa",
+        date: "24 Januari 2024",
+        text: "Kampeni maalum ya kuhamasisha wananchi kusajili matukio ya kijamii imeanza."
+      },
+      {
+        title: "Huduma Mpya za Mtandao",
+        date: "19 Januari 2024",
+        text: "Wananchi sasa wanaweza kupata baadhi ya huduma za usajili kupitia mfumo wa mtandao."
+      }
+    ]
+  : [
+      {
+        title: "New Death Registration Guidelines",
+        date: "22 February 2024",
+        text: "The government has released new guidelines to improve death registration services."
+      },
+      {
+        title: "Public Awareness Campaign",
+        date: "24 January 2024",
+        text: "A national campaign has been launched to encourage citizens to register civil events."
+      },
+      {
+        title: "New Online Services",
+        date: "19 January 2024",
+        text: "Citizens can now access some registration services through the online system."
+      }
+    ];
+
+const items = allItems.slice(0, 2);
+---
+
+<div class="ann-shell">
+  <div class="ann-top">
+    <h2 class="ann-title">{title}</h2>
+    <a href={listHref} class="ann-view-all">{viewAll}</a>
+  </div>
+
+  <div class="ann-list">
+    {items.map((item) => (
+      <article class="ann-card">
+        <div class="ann-date">{item.date}</div>
+        <h3 class="ann-head">{item.title}</h3>
+        <p class="ann-text">{item.text}</p>
+        <a href={listHref} class="ann-btn">{readMore}</a>
+      </article>
+    ))}
+  </div>
+</div>
+
+<style>
+.ann-shell{
+  background:#ffffff;
+  border-radius:22px;
+  padding:22px 18px 18px 18px;
+  box-shadow:0 10px 24px rgba(0,0,0,.05);
+  width:100%;
+  min-width:0;
+  overflow:visible;
+}
+
+.ann-top{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:14px;
+  width:100%;
+}
+
+.ann-title{
+  margin:0;
+  padding-left:6px;
+  font-size:22px;
+  font-weight:900;
+  color:#1e3a5f;
+  line-height:1.2;
+  width:100%;
+  word-break:break-word;
+}
+
+.ann-view-all{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:9px 13px;
+  border-radius:10px;
+  background:#1e3a5f;
+  color:#ffffff;
+  font-size:13px;
+  font-weight:800;
+  text-decoration:none;
+  margin-left:6px;
+}
+
+.ann-list{
+  display:grid;
+  gap:12px;
+}
+
+.ann-card{
+  background:#f8f9fb;
+  border-radius:16px;
+  padding:16px;
+  min-width:0;
+}
+
+.ann-date{
+  font-size:13px;
+  color:#7a8594;
+  margin-bottom:8px;
+  font-weight:600;
+}
+
+.ann-head{
+  margin:0 0 10px 0;
+  font-size:18px;
+  line-height:1.3;
+  color:#1e3a5f;
+  font-weight:900;
+  word-break:break-word;
+}
+
+.ann-text{
+  margin:0 0 12px 0;
+  font-size:14px;
+  line-height:1.65;
+  color:#5f6b7a;
+}
+
+.ann-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 13px;
+  border-radius:10px;
+  background:#f6a313;
+  color:#ffffff;
+  font-size:13px;
+  font-weight:800;
+  text-decoration:none;
+}
+
+@media (max-width:640px){
+  .ann-shell{
+    padding:18px 16px 16px 16px;
+  }
+
+  .ann-title{
+    font-size:20px;
+    padding-left:2px;
+  }
+
+  .ann-view-all{
+    width:100%;
+    margin-left:0;
+  }
+
+  .ann-head{
+    font-size:17px;
+  }
+}
+</style>

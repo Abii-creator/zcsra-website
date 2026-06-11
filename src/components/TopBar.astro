@@ -1,0 +1,82 @@
+---
+const { lang = "sw" } = Astro.props;
+
+const isSw = lang === "sw";
+
+const phoneLabel = isSw ? "Simu" : "Phone";
+const phoneNumber = "0772400597";
+const phoneLink = "tel:+255772400597";
+
+const email = "info@zcsra.go.tz";
+const emailLink = "mailto:info@zcsra.go.tz";
+
+const location = "Zanzibar, Tanzania";
+
+const hours = isSw
+  ? "Jumatatu - Ijumaa | 08:00 - 15:30"
+  : "Mon - Fri | 08:00 - 15:30";
+---
+
+<div class="topbar">
+  <div class="container">
+
+    <div class="topbar-left">
+      <a href={phoneLink}>📞 {phoneLabel}: {phoneNumber}</a>
+      <a href={emailLink}>✉ {email}</a>
+    </div>
+
+    <div class="topbar-right">
+      <span>📍 {location}</span>
+      <span>🕒 {hours}</span>
+    </div>
+
+  </div>
+</div>
+
+<style>
+
+.topbar{
+  background:#153459;
+  color:#ffffff;
+  font-size:13px;
+}
+
+.container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:6px 0;
+}
+
+.topbar-left,
+.topbar-right{
+  display:flex;
+  gap:22px;
+  align-items:center;
+}
+
+.topbar a{
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:500;
+}
+
+.topbar a:hover{
+  text-decoration:underline;
+}
+
+.topbar span{
+  color:#ffffff;
+  font-weight:500;
+}
+
+@media (max-width:768px){
+
+.container{
+  flex-direction:column;
+  gap:6px;
+}
+
+}
+
+</style>

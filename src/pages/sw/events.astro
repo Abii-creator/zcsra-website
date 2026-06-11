@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+---
+
+<BaseLayout title="Matukio" lang="sw">
+  <TopBar lang="sw" />
+  <Header lang="sw" />
+  <Breadcrumbs lang="sw" current="Matukio" />
+
+  <section style="padding:10px 0 0 0;">
+    <div class="container">
+      <div class="card" style="background:#ffffff;border-radius:24px;padding:34px;">
+
+        <div style="font-size:14px;font-weight:800;color:#f6a313;letter-spacing:2px;margin-bottom:10px;">
+          MATUKIO
+        </div>
+
+        <h1 style="margin:0 0 20px 0;font-size:42px;color:#1e3a5f;font-weight:900;">
+          Matukio ya Taasisi
+        </h1>
+
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+
+          <div class="card" style="background:#f8f9fb;padding:24px;border-radius:18px;">
+            <h3 style="margin:0 0 10px 0;color:#1e3a5f;">Semina ya Usajili wa Kuzaliwa</h3>
+            <div style="font-size:13px;color:#8892a0;margin-bottom:10px;">15 Machi 2024</div>
+            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
+              Semina kwa wadau kuhusu umuhimu wa usajili wa kuzaliwa na upatikanaji wa vyeti rasmi.
+            </p>
+          </div>
+
+          <div class="card" style="background:#f8f9fb;padding:24px;border-radius:18px;">
+            <h3 style="margin:0 0 10px 0;color:#1e3a5f;">Warsha ya Mafunzo ya Mfumo</h3>
+            <div style="font-size:13px;color:#8892a0;margin-bottom:10px;">3 Aprili 2024</div>
+            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
+              Warsha kwa watumishi wa serikali kuhusu matumizi ya mfumo wa usajili wa matukio ya kijamii.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="sw" />
+  <WhatsAppFloat lang="sw" />
+</BaseLayout>

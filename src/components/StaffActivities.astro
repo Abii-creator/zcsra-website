@@ -1,0 +1,165 @@
+---
+const { lang = "sw" } = Astro.props;
+
+const isSw = lang === "sw";
+
+const title = isSw ? "Shughuli za Wafanyakazi" : "Staff Activities";
+const viewAll = isSw ? "Tazama Zote" : "View All";
+
+const listHref = isSw ? "/sw/staff-activities" : "/en/staff-activities";
+
+const items = isSw
+  ? [
+      {
+        title: "Mafunzo ya Mfumo wa Usajili",
+        text: "Watumishi walipata mafunzo kuhusu matumizi ya mfumo mpya wa usajili.",
+        img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Mkutano wa Ndani wa Taasisi",
+        text: "Kikao cha ndani cha wafanyakazi kujadili maendeleo ya huduma kwa wananchi.",
+        img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Warsha ya Uboreshaji wa Huduma",
+        text: "Warsha ya kujadili mbinu mpya za kuboresha utoaji wa huduma.",
+        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+      }
+    ]
+  : [
+      {
+        title: "Registration System Training",
+        text: "Staff received training on the use of the new civil registration system.",
+        img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Internal Institutional Meeting",
+        text: "An internal meeting was held to discuss improvements in service delivery.",
+        img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        title: "Service Improvement Workshop",
+        text: "Workshop focused on strategies to improve service delivery to citizens.",
+        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+      }
+    ];
+---
+
+<section class="staff-section">
+  <div class="container">
+
+    <div class="staff-top">
+      <h2 class="staff-title">{title}</h2>
+
+      <a href={listHref} class="staff-view">
+        {viewAll}
+      </a>
+    </div>
+
+    <div class="staff-grid">
+
+      {items.map((item) => (
+
+        <article class="staff-card">
+
+          <img
+            src={item.img}
+            alt={item.title}
+            class="staff-image"
+          />
+
+          <div class="staff-body">
+
+            <h3 class="staff-head">
+              {item.title}
+            </h3>
+
+            <p class="staff-text">
+              {item.text}
+            </p>
+
+          </div>
+
+        </article>
+
+      ))}
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+.staff-section{
+  padding:60px 0;
+}
+
+.staff-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.staff-title{
+  font-size:28px;
+  font-weight:900;
+  color:#1e3a5f;
+  margin:0;
+}
+
+.staff-view{
+  background:#1e3a5f;
+  color:white;
+  padding:8px 14px;
+  border-radius:6px;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.staff-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.staff-card{
+  background:#ffffff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+.staff-image{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.staff-body{
+  padding:18px;
+}
+
+.staff-head{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:8px;
+  color:#1e3a5f;
+}
+
+.staff-text{
+  font-size:14px;
+  color:#555;
+  line-height:1.6;
+}
+
+@media(max-width:900px){
+
+.staff-grid{
+  grid-template-columns:1fr;
+}
+
+}
+
+</style>

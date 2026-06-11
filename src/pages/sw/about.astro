@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+---
+
+<BaseLayout title="Kuhusu Sisi" lang="sw">
+  <TopBar lang="sw" />
+  <Header lang="sw" />
+  <Breadcrumbs lang="sw" current="Kuhusu Sisi" />
+
+  <section style="padding:10px 0 0 0;">
+    <div class="container">
+      <div class="card" style="background:#ffffff;border-radius:24px;padding:34px;">
+        <div style="max-width:900px;">
+          <div style="font-size:14px;font-weight:800;color:#f6a313;letter-spacing:2px;margin-bottom:10px;">
+            KUHUSU TAASISI
+          </div>
+
+          <h1 style="margin:0 0 16px 0;font-size:42px;line-height:1.1;color:#1e3a5f;font-weight:900;">
+            Kuhusu Wakala wa Usajili wa Matukio ya Kijamii
+          </h1>
+
+          <p style="margin:0 0 16px 0;color:#5f6b7a;font-size:17px;line-height:1.9;">
+            Wakala huu umeanzishwa kwa lengo la kuratibu, kusimamia, na kuboresha huduma za usajili wa matukio muhimu ya kijamii kwa wananchi wa Zanzibar na diaspora. Kupitia tovuti hii, wananchi wanaweza kupata taarifa, miongozo, na huduma mbalimbali kwa urahisi zaidi.
+          </p>
+
+          <p style="margin:0 0 16px 0;color:#5f6b7a;font-size:17px;line-height:1.9;">
+            Dhamira yetu ni kuhakikisha huduma zinapatikana kwa uwazi, ufanisi, na kwa kutumia mifumo ya kisasa inayorahisisha upatikanaji wa taarifa na nyaraka muhimu.
+          </p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;">
+          <div class="card" style="background:#f8f9fb;padding:20px;border-radius:18px;">
+            <h3 style="margin:0 0 10px 0;color:#1e3a5f;font-size:20px;">Dira</h3>
+            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
+              Kuwa taasisi bora ya kisasa katika usajili wa matukio ya kijamii na utoaji wa huduma kwa wananchi.
+            </p>
+          </div>
+
+          <div class="card" style="background:#f8f9fb;padding:20px;border-radius:18px;">
+            <h3 style="margin:0 0 10px 0;color:#1e3a5f;font-size:20px;">Dhima</h3>
+            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
+              Kusimamia huduma za usajili kwa ufanisi, uwazi, na kwa kutumia mifumo inayoendana na mahitaji ya wananchi.
+            </p>
+          </div>
+
+          <div class="card" style="background:#f8f9fb;padding:20px;border-radius:18px;">
+            <h3 style="margin:0 0 10px 0;color:#1e3a5f;font-size:20px;">Maadili</h3>
+            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
+              Uadilifu, uwajibikaji, huduma bora, ushirikiano, na kuheshimu wananchi tunaowahudumia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="sw" />
+  <WhatsAppFloat lang="sw" />
+</BaseLayout>

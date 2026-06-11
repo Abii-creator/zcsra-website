@@ -1,0 +1,150 @@
+---
+const { lang = "sw" } = Astro.props;
+
+const isSw = lang === "sw";
+
+const title = isSw ? "Washirika Wetu" : "Our Partners";
+
+const partners = isSw
+  ? [
+      { short: "NIDA", name: "Mamlaka ya Vitambulisho vya Taifa" },
+      { short: "RITA", name: "Wakala wa Usajili, Ufilisi na Udhamini" },
+      { short: "TRA", name: "Mamlaka ya Mapato Tanzania" },
+      { short: "ZICTIA", name: "Mamlaka ya Mawasiliano na Teknolojia Zanzibar" },
+      { short: "OCGS", name: "Ofisi ya Mkemia Mkuu wa Serikali Zanzibar" }
+    ]
+  : [
+      { short: "NIDA", name: "National Identification Authority" },
+      { short: "RITA", name: "Registration, Insolvency and Trusteeship Agency" },
+      { short: "TRA", name: "Tanzania Revenue Authority" },
+      { short: "ZICTIA", name: "Zanzibar ICT and Communications Authority" },
+      { short: "OCGS", name: "Office of the Chief Government Statistician Zanzibar" }
+    ];
+
+const movingPartners = [...partners, ...partners];
+---
+
+<section class="partners-section">
+  <div class="container">
+
+    <h2 class="partners-title">{title}</h2>
+
+    <div class="partners-marquee">
+      <div class="partners-track">
+
+        {movingPartners.map((partner) => (
+          <article class="partner-card" aria-label={partner.short}>
+            <div class="partner-badge">{partner.short}</div>
+            <div class="partner-name">{partner.name}</div>
+          </article>
+        ))}
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+.partners-section{
+  padding:40px 0;
+  background:#f7f9fc;
+  overflow:hidden;
+}
+
+.partners-title{
+  text-align:center;
+  font-size:26px;
+  font-weight:900;
+  color:#1e3a5f;
+  margin:0 0 28px 0;
+}
+
+.partners-marquee{
+  overflow:hidden;
+  position:relative;
+  width:100%;
+}
+
+.partners-track{
+  display:flex;
+  gap:16px;
+  width:max-content;
+  animation:partnersScroll 28s linear infinite;
+}
+
+.partners-marquee:hover .partners-track{
+  animation-play-state:paused;
+}
+
+.partner-card{
+  width:220px;
+  min-height:120px;
+  background:#ffffff;
+  border-radius:12px;
+  padding:16px 14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 4px 14px rgba(0,0,0,0.05);
+  flex-shrink:0;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.partner-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+.partner-badge{
+  min-width:78px;
+  padding:10px 12px;
+  border-radius:999px;
+  background:#eef3fa;
+  color:#1e3a5f;
+  font-size:16px;
+  font-weight:900;
+  margin-bottom:12px;
+}
+
+.partner-name{
+  color:#5f6b7a;
+  line-height:1.6;
+  font-size:13px;
+  font-weight:700;
+}
+
+@keyframes partnersScroll{
+
+  0%{
+    transform:translateX(0);
+  }
+
+  100%{
+    transform:translateX(-50%);
+  }
+
+}
+
+@media (max-width:640px){
+
+  .partners-title{
+    font-size:22px;
+  }
+
+  .partner-card{
+    width:190px;
+    min-height:110px;
+    padding:14px 12px;
+  }
+
+  .partners-track{
+    animation-duration:22s;
+  }
+
+}
+
+</style>

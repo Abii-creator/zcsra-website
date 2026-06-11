@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Footer from "../../components/Footer.astro";
+import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+---
+
+<BaseLayout title="About Us" lang="en">
+  <TopBar lang="en" />
+  <Header lang="en" />
+  <Breadcrumbs lang="en" current="About Us" />
+
+  <section style="padding:10px 0 0 0;">
+    <div class="container">
+      <div class="card" style="background:#ffffff;border-radius:24px;padding:34px;">
+        <div style="max-width:900px;">
+          <div style="font-size:14px;font-weight:800;color:#f6a313;letter-spacing:2px;margin-bottom:10px;">
+            ABOUT THE INSTITUTION
+          </div>
+
+          <h1 style="margin:0 0 16px 0;font-size:42px;line-height:1.1;color:#1e3a5f;font-weight:900;">
+            About the Social Events Registration Agency
+          </h1>
+
+          <p style="margin:0 0 16px 0;color:#5f6b7a;font-size:17px;line-height:1.9;">
+            This agency was established to coordinate, manage, and improve the registration of key social events for the people of Zanzibar and the diaspora. Through this website, citizens can access information, guidelines, and essential services more easily.
+          </p>
+
+          <p style="margin:0 0 16px 0;color:#5f6b7a;font-size:17px;line-height:1.9;">
+            Our mission is to ensure that registration services are delivered with transparency, efficiency, and modern systems that simplify access to information and official documents.
+          </p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;">
+          <div class="card" style="background:#f8f9fb;padding:20px;border-radius:18px;">
+            <h3 style="margin:0 0 10px 0;color:#1e3a5f;font-size:20px;">Vision</h3>
+            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
+              To be a modern and leading institution in the registration of social events and citizen service delivery.
+            </p>
+          </div>
+
+          <div class="card" style="background:#f8f9fb;padding:20px;border-radius:18px;">
+            <h3 style="margin:0 0 10px 0;color:#1e3a5f;font-size:20px;">Mission</h3>
+            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
+              To manage registration services efficiently, transparently, and in ways that respond to the real needs of citizens.
+            </p>
+          </div>
+
+          <div class="card" style="background:#f8f9fb;padding:20px;border-radius:18px;">
+            <h3 style="margin:0 0 10px 0;color:#1e3a5f;font-size:20px;">Values</h3>
+            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
+              Integrity, accountability, quality service, cooperation, and respect for the citizens we serve.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="en" />
+  <WhatsAppFloat lang="en" />
+</BaseLayout>

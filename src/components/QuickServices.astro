@@ -1,0 +1,230 @@
+---
+const { lang = "sw" } = Astro.props;
+
+const isSw = lang === "sw";
+
+const title = isSw ? "Huduma za Haraka" : "Quick Services";
+const btnText = isSw ? "Pata Huduma" : "Get Service";
+const servicesHref = isSw ? "/sw/services" : "/en/services";
+
+const items = isSw
+  ? [
+      {
+        icon: "👶",
+        title: "Usajili wa Kuzaliwa",
+        text: "Huduma ya usajili wa watoto wachanga na taarifa za kuzaliwa.",
+        color: "gold"
+      },
+      {
+        icon: "💍",
+        title: "Usajili wa Ndoa",
+        text: "Usajili wa ndoa na utoaji wa vyeti kwa mujibu wa taratibu.",
+        color: "green"
+      },
+      {
+        icon: "🕊️",
+        title: "Usajili wa Vifo",
+        text: "Kurekodi matukio ya vifo na kusaidia upatikanaji wa nyaraka rasmi.",
+        color: "gold"
+      },
+      {
+        icon: "📄",
+        title: "Vyeti na Nyaraka",
+        text: "Maombi ya vyeti, nakala, marekebisho ya taarifa na nyaraka nyingine.",
+        color: "green"
+      }
+    ]
+  : [
+      {
+        icon: "👶",
+        title: "Birth Registration",
+        text: "Registration services for newborn children and birth information.",
+        color: "gold"
+      },
+      {
+        icon: "💍",
+        title: "Marriage Registration",
+        text: "Marriage registration and certificate issuance according to procedures.",
+        color: "green"
+      },
+      {
+        icon: "🕊️",
+        title: "Death Registration",
+        text: "Recording death events and supporting access to official documents.",
+        color: "gold"
+      },
+      {
+        icon: "📄",
+        title: "Certificates & Documents",
+        text: "Applications for certificates, copies, corrections and other records.",
+        color: "green"
+      }
+    ];
+---
+
+<section class="qs-section">
+  <div class="container">
+
+    <div class="qs-head">
+      <span class="qs-line"></span>
+      <h2 class="qs-title">{title}</h2>
+      <span class="qs-line"></span>
+    </div>
+
+    <div class="qs-grid">
+      {items.map((item) => (
+        <article class="qs-card">
+          <div class={`qs-icon ${item.color}`}>
+            {item.icon}
+          </div>
+
+          <h3 class="qs-name">{item.title}</h3>
+
+          <p class="qs-text">{item.text}</p>
+
+          <a href={servicesHref} class={`qs-btn ${item.color}`}>
+            {btnText}
+          </a>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.qs-section{
+  padding:8px 0 18px 0;
+  margin-top:0;
+}
+
+.qs-head{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin-bottom:22px;
+}
+
+.qs-line{
+  width:90px;
+  height:1px;
+  background:#ccd3dc;
+}
+
+.qs-title{
+  margin:0;
+  font-size:14px;
+  letter-spacing:3px;
+  color:#7a8594;
+  font-weight:800;
+  text-transform:uppercase;
+}
+
+.qs-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:18px;
+}
+
+.qs-card{
+  background:#ffffff;
+  border-radius:20px;
+  padding:24px 18px;
+  box-shadow:0 10px 24px rgba(0,0,0,.06);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  min-height:290px;
+}
+
+.qs-icon{
+  width:78px;
+  height:78px;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:36px;
+  margin-bottom:14px;
+}
+
+.qs-icon.gold{
+  background:rgba(246,163,19,.14);
+}
+
+.qs-icon.green{
+  background:rgba(47,107,61,.14);
+}
+
+.qs-name{
+  margin:0 0 12px 0;
+  font-size:20px;
+  font-weight:900;
+  color:#1e3a5f;
+  line-height:1.25;
+}
+
+.qs-text{
+  margin:0 0 18px 0;
+  color:#5f6b7a;
+  line-height:1.75;
+  font-size:14px;
+  flex:1;
+}
+
+.qs-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:150px;
+  padding:11px 18px;
+  border-radius:10px;
+  color:#fff;
+  font-weight:800;
+  font-size:14px;
+  text-decoration:none;
+}
+
+.qs-btn.gold{
+  background:#f6a313;
+}
+
+.qs-btn.green{
+  background:#2f6b3d;
+}
+
+@media (max-width:1000px){
+  .qs-grid{
+    grid-template-columns:repeat(2, minmax(0,1fr));
+  }
+}
+
+@media (max-width:640px){
+  .qs-section{
+    padding:6px 0 14px 0;
+  }
+
+  .qs-line{
+    width:36px;
+  }
+
+  .qs-title{
+    font-size:12px;
+    letter-spacing:2px;
+  }
+
+  .qs-grid{
+    grid-template-columns:1fr;
+  }
+
+  .qs-card{
+    min-height:auto;
+  }
+
+  .qs-btn{
+    width:100%;
+  }
+}
+</style>

@@ -1,0 +1,48 @@
+---
+const { lang = "sw", current = "" } = Astro.props;
+
+const isSw = lang === "sw";
+const homeHref = isSw ? "/sw" : "/en";
+const homeLabel = isSw ? "Mwanzo" : "Home";
+---
+
+<section class="breadcrumbs-section">
+  <div class="container">
+    <div class="breadcrumbs-box">
+      <a href={homeHref} class="crumb-link">{homeLabel}</a>
+      <span class="crumb-sep">/</span>
+      <span class="crumb-current">{current}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+.breadcrumbs-section{
+  padding:10px 0 0 0;
+}
+
+.breadcrumbs-box{
+  background:#ffffff;
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(0,0,0,.05);
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.crumb-link{
+  color:#1e3a5f;
+  font-weight:700;
+}
+
+.crumb-sep{
+  color:#96a0ad;
+}
+
+.crumb-current{
+  color:#5f6b7a;
+  font-weight:700;
+}
+</style>

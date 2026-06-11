@@ -1,0 +1,242 @@
+---
+const { lang = "sw" } = Astro.props;
+
+const isSw = lang === "sw";
+
+const agencyName =
+  isSw
+    ? "WAKALA WA USAJILI WA MATUKIO YA KIJAMII ZANZIBAR"
+    : "ZANZIBAR CIVIL STATUS REGISTRATION AGENCY";
+
+const brandDesc = isSw
+  ? "Tovuti rasmi ya taasisi inayowezesha wananchi na diaspora kupata huduma, matangazo, matukio, na taarifa muhimu kwa urahisi."
+  : "The institution's official website that enables citizens and the diaspora to access services, announcements, events, and important information more easily.";
+
+const col1 = isSw ? "KURASA" : "PAGES";
+const col2 = isSw ? "VIUNGO MUHIMU" : "IMPORTANT LINKS";
+const col3 = isSw ? "MAWASILIANO" : "CONTACT";
+
+const home = isSw ? "Tovuti Kuu" : "Home";
+const about = isSw ? "Kuhusu Sisi" : "About Us";
+const services = isSw ? "Huduma" : "Services";
+const contact = isSw ? "Mawasiliano" : "Contact";
+
+const announcements = isSw ? "Matangazo" : "Announcements";
+const events = isSw ? "Matukio" : "Events";
+const staff = isSw ? "Shughuli za Watumishi" : "Staff Activities";
+const quick = isSw ? "Huduma za Haraka" : "Quick Services";
+
+const phone = isSw ? "Simu: 0772400597" : "Phone: 0772400597";
+const email = "Email: info@zcsra.go.tz";
+const poBox = isSw ? "S.L.P: 264" : "P.O. Box: 264";
+const location = isSw ? "Anwani: Flamingo, Migombani, Zanzibar" : "Address: Flamingo, Migombani, Zanzibar";
+const hours = isSw
+  ? "Saa za kazi: Jumatatu mpaka Ijumaa, 08:00 asubuhi hadi 3:30 mchana"
+  : "Working Hours: Monday to Friday, 08:00 AM to 3:30 PM";
+
+const rights = isSw
+  ? "© 2026 ZCSRA. Haki zote zimehifadhiwa."
+  : "© 2026 ZCSRA. All rights reserved.";
+
+const homeHref = isSw ? "/sw" : "/en";
+const aboutHref = isSw ? "/sw/about" : "/en/about";
+const servicesHref = isSw ? "/sw/services" : "/en/services";
+const contactHref = isSw ? "/sw/contact" : "/en/contact";
+const announcementsHref = isSw ? "/sw/announcements" : "/en/announcements";
+const eventsHref = isSw ? "/sw/events" : "/en/events";
+const staffHref = isSw ? "/sw/staff-activities" : "/en/staff-activities";
+---
+
+<footer style="padding:18px 0 0 0;">
+  <div class="container">
+    <div class="ft-shell">
+      <div class="ft-top-1"></div>
+      <div class="ft-top-2"></div>
+      <div class="ft-top-3"></div>
+
+      <div class="ft-grid">
+        <div>
+          <div class="ft-brand">
+            <div class="ft-icon">ZCSRA</div>
+
+            <div>
+              <div class="ft-zcsra">ZCSRA</div>
+              <div class="ft-agency">{agencyName}</div>
+            </div>
+          </div>
+
+          <p class="ft-desc">{brandDesc}</p>
+        </div>
+
+        <div>
+          <h3 class="ft-heading">{col1}</h3>
+          <div class="ft-links">
+            <a href={homeHref}>• {home}</a>
+            <a href={aboutHref}>• {about}</a>
+            <a href={servicesHref}>• {services}</a>
+            <a href={contactHref}>• {contact}</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="ft-heading">{col2}</h3>
+          <div class="ft-links">
+            <a href={announcementsHref}>• {announcements}</a>
+            <a href={eventsHref}>• {events}</a>
+            <a href={staffHref}>• {staff}</a>
+            <a href={servicesHref}>• {quick}</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="ft-heading">{col3}</h3>
+          <div class="ft-links">
+            <div>• {phone}</div>
+            <div>• {email}</div>
+            <div>• {poBox}</div>
+            <div>• {location}</div>
+            <div>• {hours}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ft-copy">{rights}</div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ft-shell{
+    position:relative;
+    overflow:hidden;
+    border-radius:22px 22px 0 0;
+    background:linear-gradient(180deg,#153459,#0d2340);
+    color:#ffffff;
+  }
+
+  .ft-top-1,
+  .ft-top-2,
+  .ft-top-3{
+    position:absolute;
+    left:0;
+    right:0;
+  }
+
+  .ft-top-1{
+    top:0;
+    height:18px;
+    background:#f6a313;
+  }
+
+  .ft-top-2{
+    top:10px;
+    height:10px;
+    background:#2f6b3d;
+  }
+
+  .ft-top-3{
+    top:18px;
+    height:8px;
+    background:#1e88c8;
+  }
+
+  .ft-grid{
+    padding:58px 28px 26px 28px;
+    display:grid;
+    grid-template-columns:1.2fr .8fr .8fr .9fr;
+    gap:24px;
+    align-items:start;
+  }
+
+  .ft-brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:16px;
+  }
+
+  .ft-icon{
+    min-width:74px;
+    height:74px;
+    padding:0 10px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#f6a313,#2f6b3d);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:16px;
+    font-weight:900;
+    flex-shrink:0;
+  }
+
+  .ft-zcsra{
+    font-size:28px;
+    font-weight:900;
+    line-height:1;
+    color:#ffffff;
+  }
+
+  .ft-agency{
+    font-size:12px;
+    color:rgba(255,255,255,.75);
+    font-weight:700;
+    margin-top:6px;
+  }
+
+  .ft-desc{
+    margin:0;
+    color:rgba(255,255,255,.82);
+    line-height:1.8;
+    font-size:14px;
+    max-width:420px;
+  }
+
+  .ft-heading{
+    margin:0 0 14px 0;
+    font-size:18px;
+    font-weight:900;
+    color:#ffffff;
+  }
+
+  .ft-links{
+    display:grid;
+    gap:10px;
+  }
+
+  .ft-links a,
+  .ft-links div{
+    color:rgba(255,255,255,.82);
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  .ft-copy{
+    border-top:1px solid rgba(255,255,255,.12);
+    padding:14px 28px;
+    color:rgba(255,255,255,.72);
+    font-size:13px;
+  }
+
+  @media (max-width:1000px){
+    .ft-grid{
+      grid-template-columns:1fr 1fr;
+    }
+  }
+
+  @media (max-width:640px){
+    .ft-grid{
+      grid-template-columns:1fr;
+      padding:48px 18px 22px 18px;
+      gap:18px;
+    }
+
+    .ft-copy{
+      padding:14px 18px;
+    }
+
+    .ft-zcsra{
+      font-size:24px;
+    }
+  }
+</style>
