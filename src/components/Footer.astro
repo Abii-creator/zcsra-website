@@ -3,20 +3,19 @@ const { lang = "sw" } = Astro.props;
 
 const isSw = lang === "sw";
 
-const agencyName =
-  isSw
-    ? "WAKALA WA USAJILI WA MATUKIO YA KIJAMII ZANZIBAR"
-    : "ZANZIBAR CIVIL STATUS REGISTRATION AGENCY";
+const agencyName = isSw
+  ? "WAKALA WA USAJILI WA MATUKIO YA KIJAMII ZANZIBAR"
+  : "ZANZIBAR CIVIL STATUS REGISTRATION AGENCY";
 
 const brandDesc = isSw
-  ? "Tovuti rasmi ya taasisi inayowezesha wananchi na diaspora kupata huduma, matangazo, matukio, na taarifa muhimu kwa urahisi."
-  : "The institution's official website that enables citizens and the diaspora to access services, announcements, events, and important information more easily.";
+  ? "Tovuti rasmi inayowezesha wananchi na diaspora kupata huduma, matangazo, matukio na taarifa muhimu kwa urahisi."
+  : "The official portal enabling citizens and the diaspora to access services, announcements, events and important information more easily.";
 
 const col1 = isSw ? "KURASA" : "PAGES";
 const col2 = isSw ? "VIUNGO MUHIMU" : "IMPORTANT LINKS";
 const col3 = isSw ? "MAWASILIANO" : "CONTACT";
 
-const home = isSw ? "Tovuti Kuu" : "Home";
+const home = isSw ? "Mwanzo" : "Home";
 const about = isSw ? "Kuhusu Sisi" : "About Us";
 const services = isSw ? "Huduma" : "Services";
 const contact = isSw ? "Mawasiliano" : "Contact";
@@ -29,47 +28,78 @@ const quick = isSw ? "Huduma za Haraka" : "Quick Services";
 const phone = isSw ? "Simu: 0772400597" : "Phone: 0772400597";
 const email = "Email: info@zcsra.go.tz";
 const poBox = isSw ? "S.L.P: 264" : "P.O. Box: 264";
-const location = isSw ? "Anwani: Flamingo, Migombani, Zanzibar" : "Address: Flamingo, Migombani, Zanzibar";
+const location = isSw
+  ? "Anwani: Flamingo, Migombani, Zanzibar"
+  : "Address: Flamingo, Migombani, Zanzibar";
+
 const hours = isSw
   ? "Saa za kazi: Jumatatu mpaka Ijumaa, 08:00 asubuhi hadi 3:30 mchana"
-  : "Working Hours: Monday to Friday, 08:00 AM to 3:30 PM";
+  : "Working hours: Monday to Friday, 08:00 AM to 3:30 PM";
 
 const rights = isSw
   ? "© 2026 ZCSRA. Haki zote zimehifadhiwa."
   : "© 2026 ZCSRA. All rights reserved.";
 
-const homeHref = isSw ? "/sw" : "/en";
-const aboutHref = isSw ? "/sw/about" : "/en/about";
-const servicesHref = isSw ? "/sw/services" : "/en/services";
-const contactHref = isSw ? "/sw/contact" : "/en/contact";
-const announcementsHref = isSw ? "/sw/announcements" : "/en/announcements";
-const eventsHref = isSw ? "/sw/events" : "/en/events";
-const staffHref = isSw ? "/sw/staff-activities" : "/en/staff-activities";
+const homeHref = isSw ? "/sw/" : "/en/";
+const aboutHref = isSw ? "/sw/about/" : "/en/about/";
+const servicesHref = isSw ? "/sw/services/" : "/en/services/";
+const contactHref = isSw ? "/sw/contact/" : "/en/contact/";
+const announcementsHref = isSw ? "/sw/announcements/" : "/en/announcements/";
+const eventsHref = isSw ? "/sw/events/" : "/en/events/";
+const staffHref = isSw ? "/sw/staff-activities/" : "/en/staff-activities/";
 ---
 
-<footer style="padding:18px 0 0 0;">
+<footer class="footer">
   <div class="container">
+
     <div class="ft-shell">
+
+      <!-- =====================================================
+           TOP DECORATIVE BANDS
+      ====================================================== -->
       <div class="ft-top-1"></div>
       <div class="ft-top-2"></div>
       <div class="ft-top-3"></div>
 
+      <!-- =====================================================
+           FOOTER CONTENT GRID
+      ====================================================== -->
       <div class="ft-grid">
-        <div>
+
+        <!-- =====================================================
+             BRAND COLUMN
+        ====================================================== -->
+        <div class="ft-brand-col">
+
           <div class="ft-brand">
-            <div class="ft-icon">ZCSRA</div>
+
+            <div class="ft-logo-wrap">
+              <img
+                src="/images/zcsra-logo.png"
+                alt="ZCSRA Logo"
+                class="ft-logo"
+              />
+            </div>
 
             <div>
               <div class="ft-zcsra">ZCSRA</div>
               <div class="ft-agency">{agencyName}</div>
             </div>
+
           </div>
 
-          <p class="ft-desc">{brandDesc}</p>
+          <p class="ft-desc">
+            {brandDesc}
+          </p>
+
         </div>
 
+        <!-- =====================================================
+             PAGE LINKS
+        ====================================================== -->
         <div>
           <h3 class="ft-heading">{col1}</h3>
+
           <div class="ft-links">
             <a href={homeHref}>• {home}</a>
             <a href={aboutHref}>• {about}</a>
@@ -78,8 +108,12 @@ const staffHref = isSw ? "/sw/staff-activities" : "/en/staff-activities";
           </div>
         </div>
 
+        <!-- =====================================================
+             IMPORTANT LINKS
+        ====================================================== -->
         <div>
           <h3 class="ft-heading">{col2}</h3>
+
           <div class="ft-links">
             <a href={announcementsHref}>• {announcements}</a>
             <a href={eventsHref}>• {events}</a>
@@ -88,8 +122,12 @@ const staffHref = isSw ? "/sw/staff-activities" : "/en/staff-activities";
           </div>
         </div>
 
+        <!-- =====================================================
+             CONTACT DETAILS
+        ====================================================== -->
         <div>
           <h3 class="ft-heading">{col3}</h3>
+
           <div class="ft-links">
             <div>• {phone}</div>
             <div>• {email}</div>
@@ -98,145 +136,206 @@ const staffHref = isSw ? "/sw/staff-activities" : "/en/staff-activities";
             <div>• {hours}</div>
           </div>
         </div>
+
       </div>
 
-      <div class="ft-copy">{rights}</div>
+      <!-- =====================================================
+           COPYRIGHT
+      ====================================================== -->
+      <div class="ft-copy">
+        {rights}
+      </div>
+
     </div>
+
   </div>
 </footer>
 
 <style>
-  .ft-shell{
-    position:relative;
-    overflow:hidden;
-    border-radius:22px 22px 0 0;
-    background:linear-gradient(180deg,#153459,#0d2340);
-    color:#ffffff;
-  }
 
-  .ft-top-1,
-  .ft-top-2,
-  .ft-top-3{
-    position:absolute;
-    left:0;
-    right:0;
-  }
+/* =====================================================
+   FOOTER SECTION
+===================================================== */
+.footer{
+  padding:18px 0 0;
+}
 
-  .ft-top-1{
-    top:0;
-    height:18px;
-    background:#f6a313;
-  }
+/* =====================================================
+   FOOTER SHELL
+===================================================== */
+.ft-shell{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px 24px 0 0;
+  background:
+    radial-gradient(circle at top right,rgba(246,163,19,.14),transparent 28%),
+    linear-gradient(180deg,#082b55,#061d38);
+  color:#ffffff;
+}
 
-  .ft-top-2{
-    top:10px;
-    height:10px;
-    background:#2f6b3d;
-  }
+/* =====================================================
+   TOP DECORATIVE BANDS
+===================================================== */
+.ft-top-1,
+.ft-top-2,
+.ft-top-3{
+  position:absolute;
+  left:0;
+  right:0;
+}
 
-  .ft-top-3{
-    top:18px;
-    height:8px;
-    background:#1e88c8;
-  }
+.ft-top-1{
+  top:0;
+  height:16px;
+  background:#f6a313;
+}
+
+.ft-top-2{
+  top:9px;
+  height:10px;
+  background:#2f6b3d;
+}
+
+.ft-top-3{
+  top:17px;
+  height:8px;
+  background:#1e88c8;
+}
+
+/* =====================================================
+   FOOTER GRID
+===================================================== */
+.ft-grid{
+  padding:58px 30px 28px;
+  display:grid;
+  grid-template-columns:1.25fr .75fr .85fr 1fr;
+  gap:28px;
+  align-items:start;
+}
+
+.ft-brand-col{
+  min-width:0;
+}
+
+/* =====================================================
+   BRAND
+===================================================== */
+.ft-brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:16px;
+}
+
+.ft-logo-wrap{
+  width:76px;
+  height:76px;
+  border-radius:18px;
+  background:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  padding:8px;
+}
+
+.ft-logo{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.ft-zcsra{
+  font-size:30px;
+  font-weight:900;
+  line-height:1;
+  color:#ffffff;
+}
+
+.ft-agency{
+  font-size:12px;
+  color:rgba(255,255,255,.76);
+  font-weight:800;
+  margin-top:7px;
+  line-height:1.4;
+}
+
+.ft-desc{
+  margin:0;
+  color:rgba(255,255,255,.82);
+  line-height:1.8;
+  font-size:14px;
+  max-width:430px;
+}
+
+/* =====================================================
+   FOOTER LINKS
+===================================================== */
+.ft-heading{
+  margin:0 0 14px;
+  font-size:17px;
+  font-weight:900;
+  color:#ffffff;
+}
+
+.ft-links{
+  display:grid;
+  gap:10px;
+}
+
+.ft-links a,
+.ft-links div{
+  color:rgba(255,255,255,.82);
+  font-size:14px;
+  line-height:1.6;
+  text-decoration:none;
+}
+
+.ft-links a:hover{
+  color:#f6a313;
+}
+
+/* =====================================================
+   COPYRIGHT
+===================================================== */
+.ft-copy{
+  border-top:1px solid rgba(255,255,255,.12);
+  padding:15px 30px;
+  color:rgba(255,255,255,.72);
+  font-size:13px;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+@media (max-width:1000px){
 
   .ft-grid{
-    padding:58px 28px 26px 28px;
-    display:grid;
-    grid-template-columns:1.2fr .8fr .8fr .9fr;
-    gap:24px;
-    align-items:start;
+    grid-template-columns:1fr 1fr;
   }
 
-  .ft-brand{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    margin-bottom:16px;
-  }
+}
 
-  .ft-icon{
-    min-width:74px;
-    height:74px;
-    padding:0 10px;
-    border-radius:16px;
-    background:linear-gradient(135deg,#f6a313,#2f6b3d);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-size:16px;
-    font-weight:900;
-    flex-shrink:0;
-  }
+@media (max-width:640px){
 
-  .ft-zcsra{
-    font-size:28px;
-    font-weight:900;
-    line-height:1;
-    color:#ffffff;
-  }
-
-  .ft-agency{
-    font-size:12px;
-    color:rgba(255,255,255,.75);
-    font-weight:700;
-    margin-top:6px;
-  }
-
-  .ft-desc{
-    margin:0;
-    color:rgba(255,255,255,.82);
-    line-height:1.8;
-    font-size:14px;
-    max-width:420px;
-  }
-
-  .ft-heading{
-    margin:0 0 14px 0;
-    font-size:18px;
-    font-weight:900;
-    color:#ffffff;
-  }
-
-  .ft-links{
-    display:grid;
-    gap:10px;
-  }
-
-  .ft-links a,
-  .ft-links div{
-    color:rgba(255,255,255,.82);
-    font-size:14px;
-    line-height:1.6;
+  .ft-grid{
+    grid-template-columns:1fr;
+    padding:50px 20px 24px;
+    gap:22px;
   }
 
   .ft-copy{
-    border-top:1px solid rgba(255,255,255,.12);
-    padding:14px 28px;
-    color:rgba(255,255,255,.72);
-    font-size:13px;
+    padding:15px 20px;
   }
 
-  @media (max-width:1000px){
-    .ft-grid{
-      grid-template-columns:1fr 1fr;
-    }
+  .ft-zcsra{
+    font-size:25px;
   }
 
-  @media (max-width:640px){
-    .ft-grid{
-      grid-template-columns:1fr;
-      padding:48px 18px 22px 18px;
-      gap:18px;
-    }
-
-    .ft-copy{
-      padding:14px 18px;
-    }
-
-    .ft-zcsra{
-      font-size:24px;
-    }
+  .ft-logo-wrap{
+    width:66px;
+    height:66px;
   }
+
+}
 </style>

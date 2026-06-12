@@ -6,71 +6,75 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Footer from "../../components/Footer.astro";
 import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
 
-const announcements = [
+const activities = [
   {
-    title: "Mwongozo Mpya wa Usajili wa Vifo",
-    date: "22 Februari 2024",
-    text: "Taasisi imetoa mwongozo mpya wa usajili wa vifo ili kuboresha ufanisi wa huduma na upatikanaji wa nyaraka rasmi.",
-    tag: "Mwongozo"
+    title: "Registration System Training",
+    date: "10 June 2024",
+    text: "Staff received training on the use of the new civil registration system.",
+    type: "Training"
   },
   {
-    title: "Kampeni ya Uhamasishaji wa Usajili",
-    date: "24 Januari 2024",
-    text: "Kampeni mpya ya uhamasishaji wa usajili wa matukio ya kijamii imezinduliwa katika mikoa mbalimbali ya Zanzibar.",
-    tag: "Uhamasishaji"
+    title: "Internal Institutional Meeting",
+    date: "28 May 2024",
+    text: "An internal staff meeting was held to discuss service improvements and operational efficiency.",
+    type: "Meeting"
   },
   {
-    title: "Huduma Mpya za Mtandao",
-    date: "19 Januari 2024",
-    text: "Wananchi sasa wanaweza kupata baadhi ya huduma kupitia mfumo wa mtandao ili kurahisisha upatikanaji wa huduma.",
-    tag: "Huduma"
+    title: "Service Improvement Workshop",
+    date: "12 May 2024",
+    text: "Workshop focused on improving transparency, efficiency and quality of public services.",
+    type: "Workshop"
   }
 ];
 ---
 
-<BaseLayout title="Matangazo - ZCSRA" lang="sw">
+<BaseLayout title="Staff Activities - ZCSRA" lang="en">
 
-  <TopBar lang="sw" />
-  <Header lang="sw" />
-  <Breadcrumbs lang="sw" current="Matangazo" />
+  <TopBar lang="en" />
+  <Header lang="en" />
+  <Breadcrumbs lang="en" current="Staff Activities" />
 
-  <main class="ann-page">
+  <main class="staff-page">
 
-    <section class="ann-hero">
+    <section class="staff-hero">
       <div class="container">
+        <div class="staff-hero-card">
 
-        <div class="ann-hero-card">
-          <span class="ann-kicker">MATANGAZO</span>
+          <span class="staff-kicker">
+            STAFF ACTIVITIES
+          </span>
 
-          <h1>Matangazo ya Taasisi</h1>
+          <h1>
+            Staff Activities
+          </h1>
 
           <p>
-            Fuatilia taarifa rasmi, miongozo, kampeni na matangazo muhimu kutoka ZCSRA kuhusu huduma za usajili wa matukio ya kijamii.
+            Follow internal activities, training programs, meetings and workshops aimed at improving service delivery and institutional performance.
           </p>
-        </div>
 
+        </div>
       </div>
     </section>
 
-    <section class="ann-list-section">
+    <section class="staff-list-section">
       <div class="container">
 
-        <div class="ann-grid">
+        <div class="staff-grid">
 
-          {announcements.map((item, index) => (
-            <article class={`ann-card ${index === 0 ? "featured" : ""}`}>
+          {activities.map((item) => (
+            <article class="staff-card">
 
-              <div class="ann-meta">
-                <span class="ann-tag">{item.tag}</span>
-                <span class="ann-date">{item.date}</span>
+              <div class="staff-meta">
+                <span class="staff-type">{item.type}</span>
+                <span class="staff-date">{item.date}</span>
               </div>
 
               <h2>{item.title}</h2>
 
               <p>{item.text}</p>
 
-              <a href="#" class="ann-btn">
-                Soma Zaidi
+              <a href="#" class="staff-btn">
+                Read More
               </a>
 
             </article>
@@ -83,21 +87,21 @@ const announcements = [
 
   </main>
 
-  <Footer lang="sw" />
-  <WhatsAppFloat lang="sw" />
+  <Footer lang="en" />
+  <WhatsAppFloat lang="en" />
 
 </BaseLayout>
 
 <style>
-.ann-page{
+.staff-page{
   background:#f3f4f6;
 }
 
-.ann-hero{
+.staff-hero{
   padding:18px 0 28px;
 }
 
-.ann-hero-card{
+.staff-hero-card{
   background:#ffffff;
   border-radius:24px;
   padding:34px;
@@ -105,7 +109,7 @@ const announcements = [
   border:1px solid #e8edf3;
 }
 
-.ann-kicker{
+.staff-kicker{
   display:inline-flex;
   margin-bottom:10px;
   font-size:13px;
@@ -114,7 +118,7 @@ const announcements = [
   letter-spacing:2px;
 }
 
-.ann-hero-card h1{
+.staff-hero-card h1{
   margin:0 0 16px;
   font-size:42px;
   line-height:1.1;
@@ -122,7 +126,7 @@ const announcements = [
   font-weight:900;
 }
 
-.ann-hero-card p{
+.staff-hero-card p{
   margin:0;
   max-width:860px;
   color:#5f6b7a;
@@ -130,17 +134,17 @@ const announcements = [
   line-height:1.9;
 }
 
-.ann-list-section{
+.staff-list-section{
   padding:0 0 44px;
 }
 
-.ann-grid{
+.staff-grid{
   display:grid;
-  grid-template-columns:1fr;
-  gap:16px;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
 }
 
-.ann-card{
+.staff-card{
   position:relative;
   background:#ffffff;
   border-radius:22px;
@@ -150,30 +154,25 @@ const announcements = [
   overflow:hidden;
 }
 
-.ann-card::before{
+.staff-card::before{
   content:"";
   position:absolute;
+  top:0;
   left:0;
-  top:20px;
-  bottom:20px;
-  width:5px;
-  border-radius:999px;
-  background:#f6a313;
+  right:0;
+  height:5px;
+  background:#2f6b3d;
 }
 
-.ann-card.featured{
-  background:linear-gradient(180deg,#ffffff,#f8fafc);
-}
-
-.ann-meta{
+.staff-meta{
   display:flex;
   align-items:center;
   gap:10px;
   flex-wrap:wrap;
-  margin-bottom:12px;
+  margin-bottom:14px;
 }
 
-.ann-tag{
+.staff-type{
   display:inline-flex;
   padding:6px 11px;
   border-radius:999px;
@@ -183,28 +182,28 @@ const announcements = [
   font-weight:900;
 }
 
-.ann-date{
+.staff-date{
   color:#7a8594;
   font-size:13px;
   font-weight:800;
 }
 
-.ann-card h2{
+.staff-card h2{
   margin:0 0 10px;
   color:#082b55;
-  font-size:24px;
+  font-size:23px;
   font-weight:900;
   line-height:1.3;
 }
 
-.ann-card p{
+.staff-card p{
   margin:0 0 16px;
   color:#5f6b7a;
   line-height:1.8;
   font-size:15px;
 }
 
-.ann-btn{
+.staff-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -217,21 +216,31 @@ const announcements = [
   text-decoration:none;
 }
 
-.ann-btn:hover{
+.staff-btn:hover{
   background:#e3950f;
+}
+
+@media (max-width:1000px){
+  .staff-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
 }
 
 @media (max-width:700px){
 
-  .ann-hero-card{
+  .staff-hero-card{
     padding:24px 20px;
   }
 
-  .ann-hero-card h1{
+  .staff-hero-card h1{
     font-size:32px;
   }
 
-  .ann-card{
+  .staff-grid{
+    grid-template-columns:1fr;
+  }
+
+  .staff-card{
     padding:22px 20px;
   }
 

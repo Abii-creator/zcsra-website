@@ -4,9 +4,9 @@ import TopBar from "../../components/TopBar.astro";
 import Header from "../../components/Header.astro";
 import SearchBar from "../../components/SearchBar.astro";
 import Hero from "../../components/Hero.astro";
+import QuickServices from "../../components/QuickServices.astro";
 import MdMessage from "../../components/MdMessage.astro";
 import Announcements from "../../components/Announcements.astro";
-import QuickServices from "../../components/QuickServices.astro";
 import Events from "../../components/Events.astro";
 import StaffActivities from "../../components/StaffActivities.astro";
 import Partners from "../../components/Partners.astro";
@@ -15,87 +15,113 @@ import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
 ---
 
 <BaseLayout title="Home - ZCSRA" lang="en">
+
   <TopBar lang="en" />
   <Header lang="en" />
   <SearchBar lang="en" />
-  <Hero lang="en" />
 
+  <!-- =====================================================
+       DIRECTOR MESSAGE AND ANNOUNCEMENTS
+  ====================================================== -->
   <section class="home-dual">
     <div class="container">
-      <div class="home-top">
-        <div class="md-col">
+
+      <div class="home-grid">
+
+        <div class="home-main">
           <MdMessage lang="en" />
         </div>
 
-        <aside class="ann-col">
+        <aside class="home-side">
           <Announcements lang="en" />
         </aside>
+
       </div>
 
-      <QuickServices lang="en" />
     </div>
   </section>
 
+  <!-- =====================================================
+       HERO SECTION
+  ====================================================== -->
+  <Hero lang="en" />
+
+  <!-- =====================================================
+       QUICK SERVICES
+  ====================================================== -->
+  <QuickServices lang="en" />
+
+  <!-- =====================================================
+       EVENTS, STAFF ACTIVITIES AND PARTNERS
+  ====================================================== -->
   <Events lang="en" />
   <StaffActivities lang="en" />
   <Partners lang="en" />
+
   <Footer lang="en" />
   <WhatsAppFloat lang="en" />
+
 </BaseLayout>
 
 <style>
 .home-dual{
-  padding:20px 0 0 0;
-  overflow-x:hidden;
+  padding:26px 0 28px;
+  background:#ffffff;
+  overflow:visible;
 }
 
-.home-top{
-  display:flex;
-  align-items:flex-start;
-  gap:20px;
+.home-grid{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) 420px;
+  align-items:stretch;
+  gap:18px;
   width:100%;
 }
 
-.md-col{
-  flex:1 1 auto;
+.home-main,
+.home-side{
   min-width:0;
+  overflow:visible;
 }
 
-.ann-col{
-  width:360px;
-  flex:0 0 360px;
-  min-width:0;
-}
-
-.home-top > *{
-  margin-top:0;
-}
-
-.home-top :global(.md-section),
-.home-top :global(.ann-shell){
+.home-grid :global(.md-section),
+.home-grid :global(.ann-section){
   width:100%;
   min-width:0;
   max-width:100%;
+  height:100%;
 }
 
-.ann-col :global(.ann-shell){
-  margin-top:0;
-  position:static;
+.home-grid :global(.md-card),
+.home-grid :global(.ann-shell){
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  height:100%;
 }
 
-:global(.qs-section){
-  margin-top:30px;
-  clear:both;
+.home-side{
+  display:flex;
 }
 
-@media (max-width:1100px){
-  .home-top{
-    flex-direction:column;
+.home-side :global(.ann-section){
+  display:flex;
+  width:100%;
+}
+
+.home-side :global(.ann-shell){
+  overflow:visible;
+}
+
+@media (max-width:1150px){
+  .home-grid{
+    grid-template-columns:1fr;
   }
+}
 
-  .ann-col{
-    width:100%;
-    flex:1 1 auto;
+@media (max-width:640px){
+  .home-dual{
+    padding:20px 0 24px;
   }
 }
 </style>

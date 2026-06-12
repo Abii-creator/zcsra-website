@@ -4,144 +4,243 @@ const { lang = "sw" } = Astro.props;
 const isSw = lang === "sw";
 
 const title = isSw ? "Matangazo" : "Announcements";
-const readMore = isSw ? "Soma Zaidi" : "Read More";
-const viewAll = isSw ? "Tazama Matangazo Yote" : "View All Announcements";
-const listHref = isSw ? "/sw/announcements" : "/en/announcements";
+const readMore = isSw ? "Soma" : "Read";
+const viewAll = isSw ? "Yote" : "All";
+const listHref = isSw ? "/sw/announcements/" : "/en/announcements/";
 
 const allItems = isSw
   ? [
       {
         title: "Mwongozo Mpya wa Usajili wa Vifo",
         date: "22 Februari 2024",
-        text: "Serikali imetoa mwongozo mpya wa usajili wa vifo ili kuboresha huduma kwa wananchi."
+        text: "Mwongozo mpya wa usajili wa vifo umetolewa ili kuboresha huduma."
       },
       {
         title: "Kampeni ya Uhamasishaji Kuzinduliwa",
         date: "24 Januari 2024",
-        text: "Kampeni maalum ya kuhamasisha wananchi kusajili matukio ya kijamii imeanza."
+        text: "Kampeni ya kuhamasisha usajili wa matukio ya kijamii imeanza."
       },
       {
         title: "Huduma Mpya za Mtandao",
         date: "19 Januari 2024",
-        text: "Wananchi sasa wanaweza kupata baadhi ya huduma za usajili kupitia mfumo wa mtandao."
+        text: "Baadhi ya huduma sasa zinapatikana kupitia mfumo wa mtandao."
       }
     ]
   : [
       {
         title: "New Death Registration Guidelines",
         date: "22 February 2024",
-        text: "The government has released new guidelines to improve death registration services."
+        text: "New death registration guidelines have been released to improve services."
       },
       {
         title: "Public Awareness Campaign",
         date: "24 January 2024",
-        text: "A national campaign has been launched to encourage citizens to register civil events."
+        text: "A public campaign has been launched to promote civil event registration."
       },
       {
         title: "New Online Services",
         date: "19 January 2024",
-        text: "Citizens can now access some registration services through the online system."
+        text: "Selected registration services can now be accessed through the online system."
       }
     ];
 
 const items = allItems.slice(0, 2);
 ---
 
-<div class="ann-shell">
-  <div class="ann-top">
-    <h2 class="ann-title">{title}</h2>
-    <a href={listHref} class="ann-view-all">{viewAll}</a>
+<section class="ann-section">
+
+  <div class="ann-shell">
+
+    <!-- =====================================================
+         SECTION HEADER
+    ====================================================== -->
+    <div class="ann-top">
+
+      <div class="ann-heading-box">
+
+        <span class="ann-kicker">
+          {isSw ? "Taarifa Rasmi" : "Official Updates"}
+        </span>
+
+        <h2 class="ann-title">
+          {title}
+        </h2>
+
+      </div>
+
+      <a href={listHref} class="ann-view-all">
+        {viewAll}
+      </a>
+
+    </div>
+
+    <!-- =====================================================
+         ANNOUNCEMENT LIST
+    ====================================================== -->
+    <div class="ann-list">
+
+      {items.map((item) => (
+        <article class="ann-card">
+
+          <div class="ann-date">
+            {item.date}
+          </div>
+
+          <h3 class="ann-head">
+            {item.title}
+          </h3>
+
+          <p class="ann-text">
+            {item.text}
+          </p>
+
+          <a href={listHref} class="ann-btn">
+            {readMore}
+          </a>
+
+        </article>
+      ))}
+
+    </div>
+
   </div>
 
-  <div class="ann-list">
-    {items.map((item) => (
-      <article class="ann-card">
-        <div class="ann-date">{item.date}</div>
-        <h3 class="ann-head">{item.title}</h3>
-        <p class="ann-text">{item.text}</p>
-        <a href={listHref} class="ann-btn">{readMore}</a>
-      </article>
-    ))}
-  </div>
-</div>
+</section>
 
 <style>
-.ann-shell{
-  background:#ffffff;
-  border-radius:22px;
-  padding:22px 18px 18px 18px;
-  box-shadow:0 10px 24px rgba(0,0,0,.05);
+
+/* =====================================================
+   ANNOUNCEMENT SECTION
+===================================================== */
+.ann-section{
   width:100%;
   min-width:0;
+}
+
+/* =====================================================
+   ANNOUNCEMENT SHELL
+===================================================== */
+.ann-shell{
+  background:#ffffff;
+  border-radius:24px;
+  padding:24px;
+  box-shadow:0 10px 24px rgba(0,0,0,.05);
+  border:1px solid #e8edf3;
+  width:100%;
+  min-width:0;
+  height:100%;
   overflow:visible;
 }
 
+/* =====================================================
+   SECTION HEADER
+===================================================== */
 .ann-top{
   display:flex;
-  flex-direction:column;
   align-items:flex-start;
+  justify-content:space-between;
   gap:12px;
-  margin-bottom:14px;
-  width:100%;
+  margin-bottom:18px;
+  min-width:0;
+}
+
+.ann-heading-box{
+  min-width:0;
+  flex:1 1 auto;
+}
+
+.ann-kicker{
+  display:block;
+  margin-bottom:6px;
+  color:#f6a313;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  white-space:normal;
+  line-height:1.3;
 }
 
 .ann-title{
   margin:0;
-  padding-left:6px;
-  font-size:22px;
+  font-size:25px;
   font-weight:900;
-  color:#1e3a5f;
-  line-height:1.2;
-  width:100%;
-  word-break:break-word;
+  color:#082b55;
+  line-height:1.15;
+  white-space:normal;
 }
 
 .ann-view-all{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  padding:9px 13px;
-  border-radius:10px;
-  background:#1e3a5f;
+  flex-shrink:0;
+  padding:9px 14px;
+  border-radius:999px;
+  background:#082b55;
   color:#ffffff;
-  font-size:13px;
-  font-weight:800;
+  font-size:12px;
+  font-weight:900;
   text-decoration:none;
-  margin-left:6px;
+  white-space:nowrap;
 }
 
+.ann-view-all:hover{
+  background:#f6a313;
+}
+
+/* =====================================================
+   ANNOUNCEMENT LIST
+===================================================== */
 .ann-list{
   display:grid;
-  gap:12px;
+  gap:14px;
 }
 
+/* =====================================================
+   ANNOUNCEMENT CARD
+===================================================== */
 .ann-card{
+  position:relative;
   background:#f8f9fb;
-  border-radius:16px;
-  padding:16px;
+  border-radius:18px;
+  padding:18px 18px 18px 20px;
   min-width:0;
+  border:1px solid #edf1f5;
+}
+
+.ann-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:18px;
+  bottom:18px;
+  width:4px;
+  border-radius:999px;
+  background:#f6a313;
 }
 
 .ann-date{
-  font-size:13px;
+  font-size:12px;
   color:#7a8594;
   margin-bottom:8px;
-  font-weight:600;
+  font-weight:800;
 }
 
 .ann-head{
-  margin:0 0 10px 0;
-  font-size:18px;
-  line-height:1.3;
-  color:#1e3a5f;
+  margin:0 0 9px;
+  font-size:17px;
+  line-height:1.28;
+  color:#082b55;
   font-weight:900;
-  word-break:break-word;
+  word-break:normal;
+  overflow-wrap:break-word;
 }
 
 .ann-text{
-  margin:0 0 12px 0;
-  font-size:14px;
-  line-height:1.65;
+  margin:0 0 12px;
+  font-size:13px;
+  line-height:1.6;
   color:#5f6b7a;
 }
 
@@ -150,31 +249,39 @@ const items = allItems.slice(0, 2);
   align-items:center;
   justify-content:center;
   padding:8px 13px;
-  border-radius:10px;
+  border-radius:999px;
   background:#f6a313;
   color:#ffffff;
-  font-size:13px;
-  font-weight:800;
+  font-size:12px;
+  font-weight:900;
   text-decoration:none;
 }
 
-@media (max-width:640px){
+.ann-btn:hover{
+  background:#e3950f;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+@media (max-width:700px){
+
   .ann-shell{
-    padding:18px 16px 16px 16px;
+    padding:20px 18px;
   }
 
-  .ann-title{
-    font-size:20px;
-    padding-left:2px;
+  .ann-top{
+    flex-direction:column;
+    gap:10px;
   }
 
   .ann-view-all{
     width:100%;
-    margin-left:0;
   }
 
-  .ann-head{
-    font-size:17px;
+  .ann-title{
+    font-size:22px;
   }
+
 }
 </style>

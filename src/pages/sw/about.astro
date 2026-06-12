@@ -7,58 +7,262 @@ import Footer from "../../components/Footer.astro";
 import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
 ---
 
-<BaseLayout title="Kuhusu Sisi" lang="sw">
+<BaseLayout title="Kuhusu Sisi - ZCSRA" lang="sw">
+
   <TopBar lang="sw" />
   <Header lang="sw" />
   <Breadcrumbs lang="sw" current="Kuhusu Sisi" />
 
-  <section style="padding:10px 0 0 0;">
-    <div class="container">
-      <div class="card" style="background:#ffffff;border-radius:24px;padding:34px;">
-        <div style="max-width:900px;">
-          <div style="font-size:14px;font-weight:800;color:#f6a313;letter-spacing:2px;margin-bottom:10px;">
-            KUHUSU TAASISI
+  <main class="about-page">
+
+    <section class="about-hero">
+      <div class="container">
+
+        <div class="about-card">
+
+          <div class="about-intro">
+
+            <span class="about-kicker">
+              KUHUSU TAASISI
+            </span>
+
+            <h1>
+              Kuhusu Wakala wa Usajili wa Matukio ya Kijamii
+            </h1>
+
+            <p>
+              Wakala huu umeanzishwa kwa lengo la kuratibu, kusimamia na kuboresha huduma za usajili wa matukio muhimu ya kijamii kwa wananchi wa Zanzibar na diaspora.
+            </p>
+
+            <p>
+              Kupitia tovuti hii, wananchi wanaweza kupata taarifa, miongozo na huduma mbalimbali kwa urahisi zaidi. Dhamira yetu ni kuhakikisha huduma zinapatikana kwa uwazi, ufanisi na kwa kutumia mifumo ya kisasa.
+            </p>
+
           </div>
 
-          <h1 style="margin:0 0 16px 0;font-size:42px;line-height:1.1;color:#1e3a5f;font-weight:900;">
-            Kuhusu Wakala wa Usajili wa Matukio ya Kijamii
-          </h1>
+          <div class="about-logo-box">
+            <img
+              src="/images/zcsra-logo.png"
+              alt="ZCSRA Logo"
+              class="about-logo"
+            />
 
-          <p style="margin:0 0 16px 0;color:#5f6b7a;font-size:17px;line-height:1.9;">
-            Wakala huu umeanzishwa kwa lengo la kuratibu, kusimamia, na kuboresha huduma za usajili wa matukio muhimu ya kijamii kwa wananchi wa Zanzibar na diaspora. Kupitia tovuti hii, wananchi wanaweza kupata taarifa, miongozo, na huduma mbalimbali kwa urahisi zaidi.
-          </p>
+            <div class="about-logo-text">
+              ZCSRA
+            </div>
 
-          <p style="margin:0 0 16px 0;color:#5f6b7a;font-size:17px;line-height:1.9;">
-            Dhamira yetu ni kuhakikisha huduma zinapatikana kwa uwazi, ufanisi, na kwa kutumia mifumo ya kisasa inayorahisisha upatikanaji wa taarifa na nyaraka muhimu.
-          </p>
+            <span>
+              Zanzibar Civil Status Registration Agency
+            </span>
+          </div>
+
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;">
-          <div class="card" style="background:#f8f9fb;padding:20px;border-radius:18px;">
-            <h3 style="margin:0 0 10px 0;color:#1e3a5f;font-size:20px;">Dira</h3>
-            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
+      </div>
+    </section>
+
+    <section class="about-values">
+      <div class="container">
+
+        <div class="values-grid">
+
+          <article class="value-card">
+            <div class="value-icon gold">01</div>
+            <h3>Dira</h3>
+            <p>
               Kuwa taasisi bora ya kisasa katika usajili wa matukio ya kijamii na utoaji wa huduma kwa wananchi.
             </p>
-          </div>
+          </article>
 
-          <div class="card" style="background:#f8f9fb;padding:20px;border-radius:18px;">
-            <h3 style="margin:0 0 10px 0;color:#1e3a5f;font-size:20px;">Dhima</h3>
-            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
-              Kusimamia huduma za usajili kwa ufanisi, uwazi, na kwa kutumia mifumo inayoendana na mahitaji ya wananchi.
+          <article class="value-card">
+            <div class="value-icon green">02</div>
+            <h3>Dhima</h3>
+            <p>
+              Kusimamia huduma za usajili kwa ufanisi, uwazi na kwa kutumia mifumo inayoendana na mahitaji ya wananchi.
             </p>
-          </div>
+          </article>
 
-          <div class="card" style="background:#f8f9fb;padding:20px;border-radius:18px;">
-            <h3 style="margin:0 0 10px 0;color:#1e3a5f;font-size:20px;">Maadili</h3>
-            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
-              Uadilifu, uwajibikaji, huduma bora, ushirikiano, na kuheshimu wananchi tunaowahudumia.
+          <article class="value-card">
+            <div class="value-icon blue">03</div>
+            <h3>Maadili</h3>
+            <p>
+              Uadilifu, uwajibikaji, huduma bora, ushirikiano na kuheshimu wananchi tunaowahudumia.
             </p>
-          </div>
+          </article>
+
         </div>
+
       </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <Footer lang="sw" />
   <WhatsAppFloat lang="sw" />
+
 </BaseLayout>
+
+<style>
+.about-page{
+  background:#f3f4f6;
+}
+
+.about-hero{
+  padding:18px 0 32px;
+}
+
+.about-card{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 320px;
+  gap:30px;
+  align-items:center;
+  background:#ffffff;
+  border-radius:24px;
+  padding:34px;
+  box-shadow:0 10px 24px rgba(0,0,0,.05);
+  border:1px solid #e8edf3;
+}
+
+.about-kicker{
+  display:inline-flex;
+  margin-bottom:10px;
+  font-size:13px;
+  font-weight:900;
+  color:#f6a313;
+  letter-spacing:2px;
+}
+
+.about-intro h1{
+  margin:0 0 16px;
+  font-size:42px;
+  line-height:1.1;
+  color:#082b55;
+  font-weight:900;
+}
+
+.about-intro p{
+  margin:0 0 16px;
+  color:#5f6b7a;
+  font-size:16px;
+  line-height:1.9;
+}
+
+.about-logo-box{
+  border-radius:22px;
+  background:linear-gradient(180deg,#f8fafc,#ffffff);
+  border:1px solid #e8edf3;
+  padding:28px 22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.about-logo{
+  width:150px;
+  height:150px;
+  object-fit:contain;
+  margin-bottom:16px;
+}
+
+.about-logo-text{
+  font-size:28px;
+  font-weight:900;
+  color:#082b55;
+  line-height:1;
+}
+
+.about-logo-box span{
+  margin-top:8px;
+  font-size:13px;
+  font-weight:800;
+  color:#5f6b7a;
+  line-height:1.5;
+}
+
+.about-values{
+  padding:0 0 42px;
+}
+
+.values-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+
+.value-card{
+  background:#ffffff;
+  border-radius:22px;
+  padding:24px 22px;
+  box-shadow:0 10px 24px rgba(0,0,0,.05);
+  border:1px solid #e8edf3;
+}
+
+.value-icon{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffffff;
+  font-size:14px;
+  font-weight:900;
+  margin-bottom:16px;
+}
+
+.value-icon.gold{
+  background:#f6a313;
+}
+
+.value-icon.green{
+  background:#2f6b3d;
+}
+
+.value-icon.blue{
+  background:#082b55;
+}
+
+.value-card h3{
+  margin:0 0 10px;
+  color:#082b55;
+  font-size:22px;
+  font-weight:900;
+}
+
+.value-card p{
+  margin:0;
+  color:#5f6b7a;
+  line-height:1.8;
+  font-size:14px;
+}
+
+@media (max-width:900px){
+
+  .about-card{
+    grid-template-columns:1fr;
+  }
+
+  .values-grid{
+    grid-template-columns:1fr;
+  }
+
+  .about-intro h1{
+    font-size:32px;
+  }
+
+}
+
+@media (max-width:640px){
+
+  .about-card{
+    padding:24px 20px;
+  }
+
+  .about-logo{
+    width:120px;
+    height:120px;
+  }
+
+}
+</style>

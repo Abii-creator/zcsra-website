@@ -18,16 +18,40 @@ const hours = isSw
 ---
 
 <div class="topbar">
-  <div class="container">
+  <div class="container topbar-inner">
 
+    <!-- =====================================================
+         LEFT CONTACT DETAILS
+    ====================================================== -->
     <div class="topbar-left">
-      <a href={phoneLink}>📞 {phoneLabel}: {phoneNumber}</a>
-      <a href={emailLink}>✉ {email}</a>
+
+      <a href={phoneLink} class="topbar-item">
+        <span class="topbar-icon">☎</span>
+        <span>{phoneLabel}: {phoneNumber}</span>
+      </a>
+
+      <a href={emailLink} class="topbar-item">
+        <span class="topbar-icon">✉</span>
+        <span>{email}</span>
+      </a>
+
     </div>
 
+    <!-- =====================================================
+         RIGHT OFFICE DETAILS
+    ====================================================== -->
     <div class="topbar-right">
-      <span>📍 {location}</span>
-      <span>🕒 {hours}</span>
+
+      <span class="topbar-item">
+        <span class="topbar-icon">📍</span>
+        <span>{location}</span>
+      </span>
+
+      <span class="topbar-item">
+        <span class="topbar-icon">🕒</span>
+        <span>{hours}</span>
+      </span>
+
     </div>
 
   </div>
@@ -35,48 +59,100 @@ const hours = isSw
 
 <style>
 
+/* =====================================================
+   TOP BAR
+===================================================== */
 .topbar{
-  background:#153459;
+  background:#082b55;
   color:#ffffff;
   font-size:13px;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.container{
+/* =====================================================
+   TOP BAR INNER
+===================================================== */
+.topbar-inner{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:6px 0;
+  gap:20px;
+  min-height:36px;
 }
 
+/* =====================================================
+   LEFT AND RIGHT GROUPS
+===================================================== */
 .topbar-left,
 .topbar-right{
   display:flex;
-  gap:22px;
   align-items:center;
+  gap:22px;
+  min-width:0;
 }
 
-.topbar a{
+/* =====================================================
+   TOP BAR ITEMS
+===================================================== */
+.topbar-item{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
   color:#ffffff;
   text-decoration:none;
-  font-weight:500;
+  font-weight:800;
+  white-space:nowrap;
 }
 
 .topbar a:hover{
-  text-decoration:underline;
+  color:#f6a313;
 }
 
-.topbar span{
-  color:#ffffff;
-  font-weight:500;
+.topbar-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#f6a313;
+  font-size:13px;
 }
 
-@media (max-width:768px){
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+@media (max-width:900px){
 
-.container{
-  flex-direction:column;
-  gap:6px;
+  .topbar-inner{
+    flex-direction:column;
+    justify-content:center;
+    gap:6px;
+    padding:8px 0;
+  }
+
+  .topbar-left,
+  .topbar-right{
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
 }
 
-}
+@media (max-width:520px){
 
+  .topbar{
+    font-size:12px;
+  }
+
+  .topbar-left,
+  .topbar-right{
+    flex-direction:column;
+    gap:4px;
+  }
+
+  .topbar-item{
+    white-space:normal;
+    text-align:center;
+  }
+
+}
 </style>

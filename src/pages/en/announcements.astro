@@ -5,57 +5,235 @@ import Header from "../../components/Header.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Footer from "../../components/Footer.astro";
 import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+
+const announcements = [
+  {
+    title: "New Death Registration Guidelines",
+    date: "22 February 2024",
+    text: "The institution has released new death registration guidelines to improve service efficiency and access to official documentation.",
+    tag: "Guidelines"
+  },
+  {
+    title: "Public Awareness Campaign",
+    date: "24 January 2024",
+    text: "A new public awareness campaign on civil event registration has been launched across different regions of Zanzibar.",
+    tag: "Awareness"
+  },
+  {
+    title: "New Online Services",
+    date: "19 January 2024",
+    text: "Citizens can now access selected services online to simplify the process of obtaining official documents.",
+    tag: "Services"
+  }
+];
 ---
 
-<BaseLayout title="Announcements" lang="en">
+<BaseLayout title="Announcements - ZCSRA" lang="en">
+
   <TopBar lang="en" />
   <Header lang="en" />
   <Breadcrumbs lang="en" current="Announcements" />
 
-  <section style="padding:10px 0 0 0;">
-    <div class="container">
-      <div class="card" style="background:#ffffff;border-radius:24px;padding:34px;">
+  <main class="ann-page">
 
-        <div style="font-size:14px;font-weight:800;color:#f6a313;letter-spacing:2px;margin-bottom:10px;">
-          ANNOUNCEMENTS
+    <section class="ann-hero">
+      <div class="container">
+
+        <div class="ann-hero-card">
+          <span class="ann-kicker">ANNOUNCEMENTS</span>
+
+          <h1>Institutional Announcements</h1>
+
+          <p>
+            Follow official updates, guidelines, campaigns and important announcements from ZCSRA regarding civil status registration services.
+          </p>
         </div>
 
-        <h1 style="margin:0 0 20px 0;font-size:42px;color:#1e3a5f;font-weight:900;">
-          Institutional Announcements
-        </h1>
+      </div>
+    </section>
 
-        <div style="display:grid;grid-template-columns:1fr;gap:18px;">
+    <section class="ann-list-section">
+      <div class="container">
 
-          <div class="card" style="background:#f8f9fb;padding:22px;border-radius:18px;">
-            <h3 style="margin:0 0 8px 0;color:#1e3a5f;">New Death Registration Guidelines</h3>
-            <div style="font-size:13px;color:#8892a0;margin-bottom:10px;">22 February 2024</div>
-            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
-              The institution has released new guidelines for death registration to improve service efficiency and documentation.
-            </p>
-          </div>
+        <div class="ann-grid">
 
-          <div class="card" style="background:#f8f9fb;padding:22px;border-radius:18px;">
-            <h3 style="margin:0 0 8px 0;color:#1e3a5f;">Public Awareness Campaign</h3>
-            <div style="font-size:13px;color:#8892a0;margin-bottom:10px;">24 January 2024</div>
-            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
-              A new public awareness campaign on social event registration has been launched across Zanzibar.
-            </p>
-          </div>
+          {announcements.map((item, index) => (
+            <article class={`ann-card ${index === 0 ? "featured" : ""}`}>
 
-          <div class="card" style="background:#f8f9fb;padding:22px;border-radius:18px;">
-            <h3 style="margin:0 0 8px 0;color:#1e3a5f;">New Online Services</h3>
-            <div style="font-size:13px;color:#8892a0;margin-bottom:10px;">19 January 2024</div>
-            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
-              Citizens can now access some services online to simplify the process of obtaining official documents.
-            </p>
-          </div>
+              <div class="ann-meta">
+                <span class="ann-tag">{item.tag}</span>
+                <span class="ann-date">{item.date}</span>
+              </div>
+
+              <h2>{item.title}</h2>
+
+              <p>{item.text}</p>
+
+              <a href="#" class="ann-btn">
+                Read More
+              </a>
+
+            </article>
+          ))}
 
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <Footer lang="en" />
   <WhatsAppFloat lang="en" />
+
 </BaseLayout>
+
+<style>
+.ann-page{
+  background:#f3f4f6;
+}
+
+.ann-hero{
+  padding:18px 0 28px;
+}
+
+.ann-hero-card{
+  background:#ffffff;
+  border-radius:24px;
+  padding:34px;
+  box-shadow:0 10px 24px rgba(0,0,0,.05);
+  border:1px solid #e8edf3;
+}
+
+.ann-kicker{
+  display:inline-flex;
+  margin-bottom:10px;
+  font-size:13px;
+  font-weight:900;
+  color:#f6a313;
+  letter-spacing:2px;
+}
+
+.ann-hero-card h1{
+  margin:0 0 16px;
+  font-size:42px;
+  line-height:1.1;
+  color:#082b55;
+  font-weight:900;
+}
+
+.ann-hero-card p{
+  margin:0;
+  max-width:860px;
+  color:#5f6b7a;
+  font-size:16px;
+  line-height:1.9;
+}
+
+.ann-list-section{
+  padding:0 0 44px;
+}
+
+.ann-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+
+.ann-card{
+  position:relative;
+  background:#ffffff;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 10px 24px rgba(0,0,0,.05);
+  border:1px solid #e8edf3;
+  overflow:hidden;
+}
+
+.ann-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:20px;
+  bottom:20px;
+  width:5px;
+  border-radius:999px;
+  background:#f6a313;
+}
+
+.ann-card.featured{
+  background:linear-gradient(180deg,#ffffff,#f8fafc);
+}
+
+.ann-meta{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+
+.ann-tag{
+  display:inline-flex;
+  padding:6px 11px;
+  border-radius:999px;
+  background:rgba(8,43,85,.08);
+  color:#082b55;
+  font-size:12px;
+  font-weight:900;
+}
+
+.ann-date{
+  color:#7a8594;
+  font-size:13px;
+  font-weight:800;
+}
+
+.ann-card h2{
+  margin:0 0 10px;
+  color:#082b55;
+  font-size:24px;
+  font-weight:900;
+  line-height:1.3;
+}
+
+.ann-card p{
+  margin:0 0 16px;
+  color:#5f6b7a;
+  line-height:1.8;
+  font-size:15px;
+}
+
+.ann-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 16px;
+  border-radius:999px;
+  background:#f6a313;
+  color:#ffffff;
+  font-size:13px;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.ann-btn:hover{
+  background:#e3950f;
+}
+
+@media (max-width:700px){
+
+  .ann-hero-card{
+    padding:24px 20px;
+  }
+
+  .ann-hero-card h1{
+    font-size:32px;
+  }
+
+  .ann-card{
+    padding:22px 20px;
+  }
+
+}
+</style>

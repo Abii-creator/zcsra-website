@@ -4,21 +4,64 @@ const { lang = "sw" } = Astro.props;
 const isSw = lang === "sw";
 
 const title = isSw ? "Washirika Wetu" : "Our Partners";
+const subtitle = isSw
+  ? "Taasisi na wadau wanaoshirikiana na ZCSRA katika kuboresha huduma za usajili na taarifa."
+  : "Institutions and stakeholders working with ZCSRA to improve registration services and public information.";
 
 const partners = isSw
   ? [
-      { short: "NIDA", name: "Mamlaka ya Vitambulisho vya Taifa" },
-      { short: "RITA", name: "Wakala wa Usajili, Ufilisi na Udhamini" },
-      { short: "TRA", name: "Mamlaka ya Mapato Tanzania" },
-      { short: "ZICTIA", name: "Mamlaka ya Mawasiliano na Teknolojia Zanzibar" },
-      { short: "OCGS", name: "Ofisi ya Mkemia Mkuu wa Serikali Zanzibar" }
+      {
+        short: "NIDA",
+        name: "Mamlaka ya Vitambulisho vya Taifa",
+        logo: "/images/partners/nida.png"
+      },
+      {
+        short: "RITA",
+        name: "Wakala wa Usajili, Ufilisi na Udhamini",
+        logo: "/images/partners/rita.png"
+      },
+      {
+        short: "TRA",
+        name: "Mamlaka ya Mapato Tanzania",
+        logo: "/images/partners/tra.png"
+      },
+      {
+        short: "ZICTIA",
+        name: "Mamlaka ya Mawasiliano na Teknolojia Zanzibar",
+        logo: "/images/partners/zictia.png"
+      },
+      {
+        short: "OCGS",
+        name: "Ofisi ya Mkemia Mkuu wa Serikali Zanzibar",
+        logo: "/images/partners/ocgs.png"
+      }
     ]
   : [
-      { short: "NIDA", name: "National Identification Authority" },
-      { short: "RITA", name: "Registration, Insolvency and Trusteeship Agency" },
-      { short: "TRA", name: "Tanzania Revenue Authority" },
-      { short: "ZICTIA", name: "Zanzibar ICT and Communications Authority" },
-      { short: "OCGS", name: "Office of the Chief Government Statistician Zanzibar" }
+      {
+        short: "NIDA",
+        name: "National Identification Authority",
+        logo: "/images/partners/nida.png"
+      },
+      {
+        short: "RITA",
+        name: "Registration, Insolvency and Trusteeship Agency",
+        logo: "/images/partners/rita.png"
+      },
+      {
+        short: "TRA",
+        name: "Tanzania Revenue Authority",
+        logo: "/images/partners/tra.png"
+      },
+      {
+        short: "ZICTIA",
+        name: "Zanzibar ICT and Communications Authority",
+        logo: "/images/partners/zictia.png"
+      },
+      {
+        short: "OCGS",
+        name: "Office of the Chief Government Statistician Zanzibar",
+        logo: "/images/partners/ocgs.png"
+      }
     ];
 
 const movingPartners = [...partners, ...partners];
@@ -27,19 +70,56 @@ const movingPartners = [...partners, ...partners];
 <section class="partners-section">
   <div class="container">
 
-    <h2 class="partners-title">{title}</h2>
+    <!-- =====================================================
+         SECTION HEADER
+    ====================================================== -->
+    <div class="partners-head">
 
-    <div class="partners-marquee">
+      <span class="partners-kicker">
+        {isSw ? "Ushirikiano" : "Collaboration"}
+      </span>
+
+      <h2 class="partners-title">
+        {title}
+      </h2>
+
+      <p class="partners-subtitle">
+        {subtitle}
+      </p>
+
+    </div>
+
+    <!-- =====================================================
+         PARTNERS LOGO MARQUEE
+    ====================================================== -->
+    <div class="partners-marquee" aria-label={title}>
+
       <div class="partners-track">
 
         {movingPartners.map((partner) => (
-          <article class="partner-card" aria-label={partner.short}>
-            <div class="partner-badge">{partner.short}</div>
-            <div class="partner-name">{partner.name}</div>
+          <article class="partner-card" aria-label={partner.name}>
+
+            <div class="partner-logo-wrap">
+              <img
+                src={partner.logo}
+                alt={`${partner.short} logo`}
+                class="partner-logo"
+              />
+            </div>
+
+            <div class="partner-short">
+              {partner.short}
+            </div>
+
+            <div class="partner-name">
+              {partner.name}
+            </div>
+
           </article>
         ))}
 
       </div>
+
     </div>
 
   </div>
@@ -47,76 +127,161 @@ const movingPartners = [...partners, ...partners];
 
 <style>
 
+/* =====================================================
+   PARTNERS SECTION
+===================================================== */
 .partners-section{
-  padding:40px 0;
-  background:#f7f9fc;
+  padding:44px 0 42px;
+  background:#f3f4f6;
   overflow:hidden;
+}
+
+/* =====================================================
+   SECTION HEADER
+===================================================== */
+.partners-head{
+  max-width:720px;
+  margin:0 auto 28px;
+  text-align:center;
+}
+
+.partners-kicker{
+  display:inline-flex;
+  margin-bottom:8px;
+  color:#f6a313;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
 .partners-title{
   text-align:center;
-  font-size:26px;
+  font-size:32px;
   font-weight:900;
-  color:#1e3a5f;
-  margin:0 0 28px 0;
+  color:#082b55;
+  margin:0;
+  line-height:1.2;
 }
 
+.partners-subtitle{
+  margin:10px auto 0;
+  color:#5f6b7a;
+  font-size:15px;
+  line-height:1.7;
+}
+
+/* =====================================================
+   PARTNERS MARQUEE
+===================================================== */
 .partners-marquee{
   overflow:hidden;
   position:relative;
   width:100%;
+  padding:4px 0;
+}
+
+.partners-marquee::before,
+.partners-marquee::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:70px;
+  z-index:2;
+  pointer-events:none;
+}
+
+.partners-marquee::before{
+  left:0;
+  background:linear-gradient(90deg,#f3f4f6,transparent);
+}
+
+.partners-marquee::after{
+  right:0;
+  background:linear-gradient(270deg,#f3f4f6,transparent);
 }
 
 .partners-track{
   display:flex;
+  align-items:stretch;
   gap:16px;
   width:max-content;
-  animation:partnersScroll 28s linear infinite;
+  animation:partnersScroll 34s linear infinite;
 }
 
 .partners-marquee:hover .partners-track{
   animation-play-state:paused;
 }
 
+/* =====================================================
+   PARTNER CARD
+===================================================== */
 .partner-card{
   width:220px;
-  min-height:120px;
+  min-height:150px;
   background:#ffffff;
-  border-radius:12px;
+  border-radius:18px;
   padding:16px 14px;
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
+  justify-content:flex-start;
   text-align:center;
-  box-shadow:0 4px 14px rgba(0,0,0,0.05);
+  box-shadow:0 10px 24px rgba(0,0,0,.05);
+  border:1px solid #e8edf3;
   flex-shrink:0;
+  overflow:hidden;
   transition:transform .25s ease, box-shadow .25s ease;
 }
 
 .partner-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  transform:translateY(-3px);
+  box-shadow:0 14px 28px rgba(0,0,0,.08);
 }
 
-.partner-badge{
-  min-width:78px;
-  padding:10px 12px;
-  border-radius:999px;
-  background:#eef3fa;
-  color:#1e3a5f;
-  font-size:16px;
+/* =====================================================
+   PARTNER LOGO
+===================================================== */
+.partner-logo-wrap{
+  width:78px;
+  height:64px;
+  border-radius:14px;
+  background:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:10px;
+  overflow:hidden;
+  flex-shrink:0;
+}
+
+.partner-logo{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.partner-short{
+  color:#082b55;
+  font-size:15px;
   font-weight:900;
-  margin-bottom:12px;
+  line-height:1.2;
+  margin-bottom:5px;
 }
 
 .partner-name{
   color:#5f6b7a;
-  line-height:1.6;
-  font-size:13px;
-  font-weight:700;
+  line-height:1.45;
+  font-size:12px;
+  font-weight:800;
+  max-width:180px;
 }
 
+/* =====================================================
+   MARQUEE ANIMATION
+===================================================== */
 @keyframes partnersScroll{
 
   0%{
@@ -129,22 +294,43 @@ const movingPartners = [...partners, ...partners];
 
 }
 
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
 @media (max-width:640px){
 
+  .partners-section{
+    padding:36px 0 34px;
+  }
+
   .partners-title{
-    font-size:22px;
+    font-size:26px;
+  }
+
+  .partners-marquee::before,
+  .partners-marquee::after{
+    width:34px;
   }
 
   .partner-card{
     width:190px;
-    min-height:110px;
-    padding:14px 12px;
+    min-height:142px;
+    padding:15px 12px;
+  }
+
+  .partner-logo-wrap{
+    width:68px;
+    height:56px;
+  }
+
+  .partner-name{
+    max-width:160px;
+    font-size:12px;
   }
 
   .partners-track{
-    animation-duration:22s;
+    animation-duration:28s;
   }
 
 }
-
 </style>

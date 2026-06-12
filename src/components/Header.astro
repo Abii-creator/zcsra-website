@@ -1,160 +1,357 @@
 ---
 const { lang = "sw" } = Astro.props;
 
+// =====================================================
+// LANGUAGE CHECK
+// Determines whether current page is Swahili or English
+// =====================================================
 const isSw = lang === "sw";
 
+// =====================================================
+// AGENCY DETAILS
+// Header brand text changes based on selected language
+// =====================================================
 const agencyName = isSw
   ? "WAKALA WA USAJILI WA MATUKIO YA KIJAMII ZANZIBAR"
   : "ZANZIBAR CIVIL STATUS REGISTRATION AGENCY";
 
 const locationName = "ZANZIBAR";
 
-const home = isSw ? "/sw" : "/en";
-const about = isSw ? "/sw/about" : "/en/about";
-const services = isSw ? "/sw/services" : "/en/services";
-const announcements = isSw ? "/sw/announcements" : "/en/announcements";
-const events = isSw ? "/sw/events" : "/en/events";
-const contact = isSw ? "/sw/contact" : "/en/contact";
+// =====================================================
+// ROUTE LINKS
+// Trailing slash is required for Render static hosting
+// =====================================================
+const home = isSw ? "/sw/" : "/en/";
+const about = isSw ? "/sw/about/" : "/en/about/";
+const services = isSw ? "/sw/services/" : "/en/services/";
+const announcements = isSw ? "/sw/announcements/" : "/en/announcements/";
+const events = isSw ? "/sw/events/" : "/en/events/";
+const contact = isSw ? "/sw/contact/" : "/en/contact/";
 
-const switchHref = isSw ? "/en" : "/sw";
-const switchLabel = isSw ? "English" : "Kiswahili";
+// =====================================================
+// LANGUAGE LINKS
+// Shows KISW | ENG instead of a single language button
+// =====================================================
+const swHref = "/sw/";
+const enHref = "/en/";
 ---
 
 <header class="header">
   <div class="container header-inner">
 
-    <div class="brand">
-      <div class="logo-box">ZCSRA</div>
+    <!-- =====================================================
+         LEFT OFFICIAL LOGO - SMZ
+    ====================================================== -->
+    <a href={home} class="header-logo left-logo" aria-label="SMZ Home">
+      <img
+        src="/images/smz-logo.png"
+        alt="SMZ Logo"
+        class="smz-logo"
+      />
+    </a>
+
+    <!-- =====================================================
+         CENTER BRAND TEXT AND NAVIGATION
+    ====================================================== -->
+    <div class="center-header">
 
       <div class="brand-text">
         <div class="agency">{agencyName}</div>
         <div class="location">{locationName}</div>
       </div>
+
+      <!-- =====================================================
+           MAIN NAVIGATION
+      ====================================================== -->
+      <nav class="nav">
+
+        <a href={home}>{isSw ? "Mwanzo" : "Home"}</a>
+        <a href={about}>{isSw ? "Kuhusu Sisi" : "About Us"}</a>
+        <a href={services}>{isSw ? "Huduma" : "Services"}</a>
+        <a href={announcements}>{isSw ? "Matangazo" : "Announcements"}</a>
+        <a href={events}>{isSw ? "Matukio" : "Events"}</a>
+        <a href={contact}>{isSw ? "Mawasiliano" : "Contact"}</a>
+
+      </nav>
+
     </div>
 
-    <nav class="nav">
+    <!-- =====================================================
+         RIGHT AREA - LANGUAGE SWITCHER + ZCSRA LOGO
+    ====================================================== -->
+    <div class="right-area">
 
-      <a href={home}>
-        {isSw ? "Mwanzo" : "Home"}
+      <div class="language-switch" aria-label="Language switcher">
+        <a
+          href={swHref}
+          class={isSw ? "active" : ""}
+        >
+          KISW
+        </a>
+
+        <span>|</span>
+
+        <a
+          href={enHref}
+          class={!isSw ? "active" : ""}
+        >
+          ENG
+        </a>
+      </div>
+
+      <a href={home} class="header-logo right-logo" aria-label="ZCSRA Home">
+        <img
+          src="/images/zcsra-logo.png"
+          alt="ZCSRA Logo"
+          class="zcsra-logo"
+        />
       </a>
 
-      <a href={about}>
-        {isSw ? "Kuhusu Sisi" : "About Us"}
-      </a>
-
-      <a href={services}>
-        {isSw ? "Huduma" : "Services"}
-      </a>
-
-      <a href={announcements}>
-        {isSw ? "Matangazo" : "Announcements"}
-      </a>
-
-      <a href={events}>
-        {isSw ? "Matukio" : "Events"}
-      </a>
-
-      <a href={contact}>
-        {isSw ? "Mawasiliano" : "Contact"}
-      </a>
-
-      <a href={switchHref} class="lang-btn">
-        {switchLabel}
-      </a>
-
-    </nav>
+    </div>
 
   </div>
 </header>
 
 <style>
 
+/* =====================================================
+   HEADER CONTAINER
+===================================================== */
 .header{
   background:#ffffff;
   border-bottom:1px solid #e6e8ec;
 }
 
 .header-inner{
-  display:flex;
-  justify-content:space-between;
+  display:grid;
+  grid-template-columns:150px 1fr 150px;
   align-items:center;
-  padding:14px 0;
+  gap:24px;
+  padding:16px 0;
 }
 
-.brand{
+/* =====================================================
+   HEADER LOGOS
+===================================================== */
+.header-logo{
   display:flex;
   align-items:center;
-  gap:14px;
+  text-decoration:none;
 }
 
-.logo-box{
-  width:60px;
-  height:60px;
-  border-radius:12px;
-  background:linear-gradient(135deg,#f6a313,#2f6b3d);
+.left-logo{
+  justify-content:flex-start;
+  padding-left:22px;
+}
+
+.right-logo{
+  justify-content:center;
+}
+
+.smz-logo{
+  width:112px;
+  height:72px;
+  object-fit:contain;
+}
+
+.zcsra-logo{
+  width:82px;
+  height:82px;
+  object-fit:contain;
+}
+
+/* =====================================================
+   RIGHT AREA
+===================================================== */
+.right-area{
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  color:#ffffff;
-  font-weight:900;
-  font-size:16px;
+  gap:6px;
 }
 
+/* =====================================================
+   LANGUAGE SWITCHER
+===================================================== */
+.language-switch{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:#f3f4f6;
+  border:1px solid #e8edf3;
+  color:#5f6b7a;
+  font-size:12px;
+  font-weight:900;
+  line-height:1;
+}
+
+.language-switch a{
+  color:#5f6b7a;
+  text-decoration:none;
+}
+
+.language-switch a.active{
+  color:#082b55;
+}
+
+.language-switch a:hover{
+  color:#f6a313;
+}
+
+.language-switch span{
+  color:#b4bdc9;
+}
+
+/* =====================================================
+   CENTER HEADER AREA
+===================================================== */
+.center-header{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  text-align:center;
+  min-width:0;
+}
+
+/* =====================================================
+   BRAND TEXT
+===================================================== */
 .brand-text{
   display:flex;
   flex-direction:column;
+  align-items:center;
 }
 
 .agency{
-  font-size:13px;
-  font-weight:800;
-  color:#1e3a5f;
-  line-height:1.2;
+  font-size:20px;
+  font-weight:900;
+  color:#082b55;
+  line-height:1.25;
+  letter-spacing:.3px;
 }
 
 .location{
-  font-size:12px;
+  margin-top:5px;
+  font-size:14px;
   color:#5f6b7a;
-  font-weight:600;
+  font-weight:700;
+  letter-spacing:.8px;
 }
 
+/* =====================================================
+   NAVIGATION
+===================================================== */
 .nav{
   display:flex;
   align-items:center;
-  gap:18px;
+  justify-content:center;
+  gap:26px;
+  flex-wrap:wrap;
 }
 
 .nav a{
   text-decoration:none;
-  color:#1e3a5f;
-  font-weight:700;
-  font-size:14px;
+  color:#082b55;
+  font-weight:800;
+  font-size:15px;
+  white-space:nowrap;
 }
 
 .nav a:hover{
   color:#f6a313;
 }
 
-.lang-btn{
-  background:#1e3a5f;
-  color:#ffffff !important;
-  padding:8px 16px;
-  border-radius:999px;
-  font-size:13px;
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+@media (max-width:1050px){
+
+  .header-inner{
+    grid-template-columns:1fr;
+    gap:12px;
+    padding:16px 0;
+  }
+
+  .left-logo{
+    justify-content:center;
+    padding-left:0;
+  }
+
+  .right-area{
+    order:2;
+  }
+
+  .center-header{
+    order:3;
+  }
+
+  .smz-logo{
+    width:100px;
+    height:64px;
+  }
+
+  .zcsra-logo{
+    width:72px;
+    height:72px;
+  }
+
+  .agency{
+    font-size:16px;
+  }
+
+  .location{
+    font-size:13px;
+  }
+
+  .nav{
+    gap:16px;
+    row-gap:10px;
+  }
+
+  .nav a{
+    font-size:14px;
+  }
+
 }
 
-@media (max-width:900px){
+@media (max-width:600px){
 
-.header-inner{
-  flex-direction:column;
-  gap:12px;
+  .smz-logo{
+    width:90px;
+    height:56px;
+  }
+
+  .zcsra-logo{
+    width:64px;
+    height:64px;
+  }
+
+  .agency{
+    font-size:13px;
+  }
+
+  .location{
+    font-size:12px;
+  }
+
+  .nav{
+    gap:12px;
+  }
+
+  .nav a{
+    font-size:13px;
+  }
+
+  .language-switch{
+    font-size:11px;
+    padding:6px 10px;
+  }
+
 }
-
-.nav{
-  flex-wrap:wrap;
-  justify-content:center;
-}
-
-}
-
 </style>

@@ -5,49 +5,225 @@ import Header from "../../components/Header.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Footer from "../../components/Footer.astro";
 import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
+
+const events = [
+  {
+    title: "Birth Registration Seminar",
+    date: "15 March 2024",
+    text: "A seminar for stakeholders on the importance of birth registration and access to official certificates.",
+    type: "Seminar"
+  },
+  {
+    title: "System Training Workshop",
+    date: "3 April 2024",
+    text: "A training workshop for government officers on the use of the civil registration system.",
+    type: "Workshop"
+  },
+  {
+    title: "Stakeholders Meeting",
+    date: "20 May 2024",
+    text: "A stakeholders meeting to discuss improvements in service delivery and public access to information.",
+    type: "Meeting"
+  }
+];
 ---
 
-<BaseLayout title="Events" lang="en">
+<BaseLayout title="Events - ZCSRA" lang="en">
   <TopBar lang="en" />
   <Header lang="en" />
   <Breadcrumbs lang="en" current="Events" />
 
-  <section style="padding:10px 0 0 0;">
-    <div class="container">
-      <div class="card" style="background:#ffffff;border-radius:24px;padding:34px;">
-
-        <div style="font-size:14px;font-weight:800;color:#f6a313;letter-spacing:2px;margin-bottom:10px;">
-          EVENTS
+  <main class="events-page">
+    <section class="events-hero">
+      <div class="container">
+        <div class="events-hero-card">
+          <span class="events-kicker">EVENTS</span>
+          <h1>Institutional Events</h1>
+          <p>
+            Follow seminars, workshops, meetings and official ZCSRA activities focused on improving civil status registration services.
+          </p>
         </div>
-
-        <h1 style="margin:0 0 20px 0;font-size:42px;color:#1e3a5f;font-weight:900;">
-          Institutional Events
-        </h1>
-
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
-
-          <div class="card" style="background:#f8f9fb;padding:24px;border-radius:18px;">
-            <h3 style="margin:0 0 10px 0;color:#1e3a5f;">Birth Registration Seminar</h3>
-            <div style="font-size:13px;color:#8892a0;margin-bottom:10px;">15 March 2024</div>
-            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
-              Seminar for stakeholders on the importance of birth registration and access to official certificates.
-            </p>
-          </div>
-
-          <div class="card" style="background:#f8f9fb;padding:24px;border-radius:18px;">
-            <h3 style="margin:0 0 10px 0;color:#1e3a5f;">System Training Workshop</h3>
-            <div style="font-size:13px;color:#8892a0;margin-bottom:10px;">3 April 2024</div>
-            <p style="margin:0;color:#5f6b7a;line-height:1.8;">
-              Training workshop for government officers on the use of the civil registration system.
-            </p>
-          </div>
-
-        </div>
-
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="events-list-section">
+      <div class="container">
+        <div class="events-grid">
+          {events.map((event, index) => (
+            <article class={`event-card ${index === 0 ? "featured" : ""}`}>
+              <div class="event-meta">
+                <span class="event-type">{event.type}</span>
+                <span class="event-date">{event.date}</span>
+              </div>
+
+              <h2>{event.title}</h2>
+              <p>{event.text}</p>
+
+              <a href="#" class="event-btn">Read More</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
 
   <Footer lang="en" />
   <WhatsAppFloat lang="en" />
 </BaseLayout>
+
+<style>
+.events-page{
+  background:#f3f4f6;
+}
+
+.events-hero{
+  padding:18px 0 28px;
+}
+
+.events-hero-card{
+  background:#ffffff;
+  border-radius:24px;
+  padding:34px;
+  box-shadow:0 10px 24px rgba(0,0,0,.05);
+  border:1px solid #e8edf3;
+}
+
+.events-kicker{
+  display:inline-flex;
+  margin-bottom:10px;
+  font-size:13px;
+  font-weight:900;
+  color:#f6a313;
+  letter-spacing:2px;
+}
+
+.events-hero-card h1{
+  margin:0 0 16px;
+  font-size:42px;
+  line-height:1.1;
+  color:#082b55;
+  font-weight:900;
+}
+
+.events-hero-card p{
+  margin:0;
+  max-width:860px;
+  color:#5f6b7a;
+  font-size:16px;
+  line-height:1.9;
+}
+
+.events-list-section{
+  padding:0 0 44px;
+}
+
+.events-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+
+.event-card{
+  position:relative;
+  background:#ffffff;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 10px 24px rgba(0,0,0,.05);
+  border:1px solid #e8edf3;
+  overflow:hidden;
+}
+
+.event-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:5px;
+  background:#f6a313;
+}
+
+.event-card.featured::before{
+  background:#2f6b3d;
+}
+
+.event-meta{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+
+.event-type{
+  display:inline-flex;
+  padding:6px 11px;
+  border-radius:999px;
+  background:rgba(8,43,85,.08);
+  color:#082b55;
+  font-size:12px;
+  font-weight:900;
+}
+
+.event-date{
+  color:#7a8594;
+  font-size:13px;
+  font-weight:800;
+}
+
+.event-card h2{
+  margin:0 0 10px;
+  color:#082b55;
+  font-size:23px;
+  font-weight:900;
+  line-height:1.3;
+}
+
+.event-card p{
+  margin:0 0 16px;
+  color:#5f6b7a;
+  line-height:1.8;
+  font-size:15px;
+}
+
+.event-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 16px;
+  border-radius:999px;
+  background:#f6a313;
+  color:#ffffff;
+  font-size:13px;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.event-btn:hover{
+  background:#e3950f;
+}
+
+@media (max-width:1000px){
+  .events-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:700px){
+  .events-hero-card{
+    padding:24px 20px;
+  }
+
+  .events-hero-card h1{
+    font-size:32px;
+  }
+
+  .events-grid{
+    grid-template-columns:1fr;
+  }
+
+  .event-card{
+    padding:22px 20px;
+  }
+}
+</style>

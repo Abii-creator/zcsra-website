@@ -2,30 +2,42 @@
 const { lang = "sw", current = "" } = Astro.props;
 
 const isSw = lang === "sw";
-const homeHref = isSw ? "/sw" : "/en";
+const homeHref = isSw ? "/sw/" : "/en/";
 const homeLabel = isSw ? "Mwanzo" : "Home";
 ---
 
-<section class="breadcrumbs-section">
+<section class="breadcrumbs-section" aria-label="Breadcrumb">
   <div class="container">
-    <div class="breadcrumbs-box">
-      <a href={homeHref} class="crumb-link">{homeLabel}</a>
+
+    <nav class="breadcrumbs-box">
+
+      <a href={homeHref} class="crumb-link">
+        {homeLabel}
+      </a>
+
       <span class="crumb-sep">/</span>
-      <span class="crumb-current">{current}</span>
-    </div>
+
+      <span class="crumb-current" aria-current="page">
+        {current}
+      </span>
+
+    </nav>
+
   </div>
 </section>
 
 <style>
 .breadcrumbs-section{
-  padding:10px 0 0 0;
+  padding:12px 0 0;
+  background:#f3f4f6;
 }
 
 .breadcrumbs-box{
   background:#ffffff;
   border-radius:16px;
   box-shadow:0 10px 24px rgba(0,0,0,.05);
-  padding:14px 18px;
+  border:1px solid #e8edf3;
+  padding:13px 18px;
   display:flex;
   align-items:center;
   gap:10px;
@@ -33,16 +45,24 @@ const homeLabel = isSw ? "Mwanzo" : "Home";
 }
 
 .crumb-link{
-  color:#1e3a5f;
-  font-weight:700;
+  color:#082b55;
+  font-size:14px;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.crumb-link:hover{
+  color:#f6a313;
 }
 
 .crumb-sep{
   color:#96a0ad;
+  font-weight:800;
 }
 
 .crumb-current{
   color:#5f6b7a;
-  font-weight:700;
+  font-size:14px;
+  font-weight:800;
 }
 </style>

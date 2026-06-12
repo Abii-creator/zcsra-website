@@ -4,15 +4,19 @@ const { lang = "sw" } = Astro.props;
 const isSw = lang === "sw";
 
 const title = isSw ? "Huduma za Haraka" : "Quick Services";
+const subtitle = isSw
+  ? "Pata huduma muhimu za usajili wa matukio ya kijamii kwa urahisi."
+  : "Access key civil status registration services easily.";
+
 const btnText = isSw ? "Pata Huduma" : "Get Service";
-const servicesHref = isSw ? "/sw/services" : "/en/services";
+const servicesHref = isSw ? "/sw/services/" : "/en/services/";
 
 const items = isSw
   ? [
       {
         icon: "👶",
         title: "Usajili wa Kuzaliwa",
-        text: "Huduma ya usajili wa watoto wachanga na taarifa za kuzaliwa.",
+        text: "Huduma ya usajili wa watoto wachanga na taarifa rasmi za kuzaliwa.",
         color: "gold"
       },
       {
@@ -25,20 +29,20 @@ const items = isSw
         icon: "🕊️",
         title: "Usajili wa Vifo",
         text: "Kurekodi matukio ya vifo na kusaidia upatikanaji wa nyaraka rasmi.",
-        color: "gold"
+        color: "blue"
       },
       {
         icon: "📄",
         title: "Vyeti na Nyaraka",
         text: "Maombi ya vyeti, nakala, marekebisho ya taarifa na nyaraka nyingine.",
-        color: "green"
+        color: "gold"
       }
     ]
   : [
       {
         icon: "👶",
         title: "Birth Registration",
-        text: "Registration services for newborn children and birth information.",
+        text: "Registration services for newborn children and official birth records.",
         color: "gold"
       },
       {
@@ -51,13 +55,13 @@ const items = isSw
         icon: "🕊️",
         title: "Death Registration",
         text: "Recording death events and supporting access to official documents.",
-        color: "gold"
+        color: "blue"
       },
       {
         icon: "📄",
         title: "Certificates & Documents",
         text: "Applications for certificates, copies, corrections and other records.",
-        color: "green"
+        color: "gold"
       }
     ];
 ---
@@ -65,15 +69,31 @@ const items = isSw
 <section class="qs-section">
   <div class="container">
 
+    <!-- =====================================================
+         SECTION HEADER
+    ====================================================== -->
     <div class="qs-head">
-      <span class="qs-line"></span>
+
+      <span class="qs-kicker">
+        {isSw ? "Huduma" : "Services"}
+      </span>
+
       <h2 class="qs-title">{title}</h2>
-      <span class="qs-line"></span>
+
+      <p class="qs-subtitle">
+        {subtitle}
+      </p>
+
     </div>
 
+    <!-- =====================================================
+         QUICK SERVICES GRID
+    ====================================================== -->
     <div class="qs-grid">
+
       {items.map((item) => (
-        <article class="qs-card">
+        <article class={`qs-card ${item.color}`}>
+
           <div class={`qs-icon ${item.color}`}>
             {item.icon}
           </div>
@@ -85,69 +105,117 @@ const items = isSw
           <a href={servicesHref} class={`qs-btn ${item.color}`}>
             {btnText}
           </a>
+
         </article>
       ))}
+
     </div>
 
   </div>
 </section>
 
 <style>
+
+/* =====================================================
+   QUICK SERVICES SECTION
+===================================================== */
 .qs-section{
-  padding:8px 0 18px 0;
-  margin-top:0;
+  padding:42px 0 34px;
+  background:#f3f4f6;
 }
 
+/* =====================================================
+   SECTION HEADER
+===================================================== */
 .qs-head{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  margin-bottom:22px;
+  max-width:680px;
+  margin:0 auto 28px;
+  text-align:center;
 }
 
-.qs-line{
-  width:90px;
-  height:1px;
-  background:#ccd3dc;
+.qs-kicker{
+  display:inline-flex;
+  margin-bottom:10px;
+  color:#f6a313;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:2.4px;
+  text-transform:uppercase;
 }
 
 .qs-title{
   margin:0;
-  font-size:14px;
-  letter-spacing:3px;
-  color:#7a8594;
-  font-weight:800;
-  text-transform:uppercase;
+  font-size:32px;
+  font-weight:900;
+  color:#082b55;
+  line-height:1.2;
 }
 
+.qs-subtitle{
+  margin:12px auto 0;
+  color:#5f6b7a;
+  font-size:15px;
+  line-height:1.7;
+}
+
+/* =====================================================
+   QUICK SERVICES GRID
+===================================================== */
 .qs-grid{
   display:grid;
   grid-template-columns:repeat(4, minmax(0, 1fr));
   gap:18px;
 }
 
+/* =====================================================
+   QUICK SERVICE CARD
+===================================================== */
 .qs-card{
+  position:relative;
+  overflow:hidden;
   background:#ffffff;
-  border-radius:20px;
-  padding:24px 18px;
+  border-radius:22px;
+  padding:26px 20px 22px;
   box-shadow:0 10px 24px rgba(0,0,0,.06);
   display:flex;
   flex-direction:column;
   align-items:center;
   text-align:center;
-  min-height:290px;
+  min-height:310px;
+  border:1px solid #e8edf3;
 }
 
+.qs-card::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:5px;
+}
+
+.qs-card.gold::before{
+  background:#f6a313;
+}
+
+.qs-card.green::before{
+  background:#2f6b3d;
+}
+
+.qs-card.blue::before{
+  background:#082b55;
+}
+
+/* =====================================================
+   CARD ICON
+===================================================== */
 .qs-icon{
-  width:78px;
-  height:78px;
+  width:72px;
+  height:72px;
   border-radius:20px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:36px;
-  margin-bottom:14px;
+  font-size:34px;
+  margin-bottom:16px;
 }
 
 .qs-icon.gold{
@@ -158,33 +226,44 @@ const items = isSw
   background:rgba(47,107,61,.14);
 }
 
+.qs-icon.blue{
+  background:rgba(8,43,85,.10);
+}
+
+/* =====================================================
+   CARD TEXT
+===================================================== */
 .qs-name{
-  margin:0 0 12px 0;
-  font-size:20px;
+  margin:0 0 12px;
+  font-size:19px;
   font-weight:900;
-  color:#1e3a5f;
+  color:#082b55;
   line-height:1.25;
 }
 
 .qs-text{
-  margin:0 0 18px 0;
+  margin:0 0 20px;
   color:#5f6b7a;
   line-height:1.75;
   font-size:14px;
   flex:1;
 }
 
+/* =====================================================
+   CARD BUTTONS
+===================================================== */
 .qs-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-width:150px;
+  min-width:148px;
   padding:11px 18px;
-  border-radius:10px;
-  color:#fff;
-  font-weight:800;
+  border-radius:999px;
+  color:#ffffff;
+  font-weight:900;
   font-size:14px;
   text-decoration:none;
+  transition:.2s;
 }
 
 .qs-btn.gold{
@@ -195,24 +274,34 @@ const items = isSw
   background:#2f6b3d;
 }
 
+.qs-btn.blue{
+  background:#082b55;
+}
+
+.qs-btn:hover{
+  transform:translateY(-1px);
+  filter:brightness(.96);
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
 @media (max-width:1000px){
+
   .qs-grid{
     grid-template-columns:repeat(2, minmax(0,1fr));
   }
+
 }
 
 @media (max-width:640px){
-  .qs-section{
-    padding:6px 0 14px 0;
-  }
 
-  .qs-line{
-    width:36px;
+  .qs-section{
+    padding:34px 0 28px;
   }
 
   .qs-title{
-    font-size:12px;
-    letter-spacing:2px;
+    font-size:26px;
   }
 
   .qs-grid{
@@ -226,5 +315,6 @@ const items = isSw
   .qs-btn{
     width:100%;
   }
+
 }
 </style>

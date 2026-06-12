@@ -1,58 +1,129 @@
 ---
-const { title = "Gov Portal", lang = "sw" } = Astro.props;
+const {
+  title = "ZCSRA",
+  lang = "sw"
+} = Astro.props;
+
+const siteName = "ZCSRA";
+
+const description =
+  lang === "sw"
+    ? "Tovuti rasmi ya Wakala wa Usajili wa Matukio ya Kijamii Zanzibar (ZCSRA)."
+    : "Official website of the Zanzibar Civil Status Registration Agency (ZCSRA).";
+
+const canonicalPath = Astro.url.pathname;
 ---
 
 <!DOCTYPE html>
 <html lang={lang}>
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>{title}</title>
+
+  <meta
+    name="description"
+    content={description}
+  />
+
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href={canonicalPath} />
+
+  <!-- =====================================================
+       FAVICON
+  ====================================================== -->
+  <link rel="icon" type="image/png" href="/images/zcsra-logo.png" />
+  <link rel="apple-touch-icon" href="/images/zcsra-logo.png" />
+
+  <!-- =====================================================
+       OPEN GRAPH
+  ====================================================== -->
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/images/zcsra-logo.png" />
+
+  <!-- =====================================================
+       TWITTER / SOCIAL PREVIEW
+  ====================================================== -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="/images/zcsra-logo.png" />
+
+  <meta name="theme-color" content="#082b55" />
 
   <style>
     :root{
-      --bg:#f4f4f7;
+      --bg:#f3f4f6;
       --card:#ffffff;
       --text:#1f2d3d;
       --muted:#5f6b7a;
-      --primary:#1e3a5f;
+      --primary:#082b55;
       --gold:#f6a313;
       --green:#2f6b3d;
       --line:#e7e8ec;
-      --shadow:0 10px 30px rgba(0,0,0,.08);
-      --radius:18px;
-      --max:1180px;
+      --shadow:0 10px 24px rgba(0,0,0,.05);
+      --radius:22px;
+      --max:1200px;
     }
 
-    *{
+    *,
+    *::before,
+    *::after{
       box-sizing:border-box;
     }
 
-    html,body{
+    html{
+      scroll-behavior:smooth;
+    }
+
+    html,
+    body{
       margin:0;
       padding:0;
+      width:100%;
+      overflow-x:hidden;
     }
 
     body{
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-family:Arial, Helvetica, sans-serif;
       background:var(--bg);
       color:var(--text);
       line-height:1.6;
     }
 
     a{
-      text-decoration:none;
       color:inherit;
+      text-decoration:none;
     }
 
-    img{
+    img,
+    video{
       max-width:100%;
       display:block;
     }
 
+    button,
+    input,
+    textarea,
+    select{
+      font:inherit;
+    }
+
     .container{
-      width:min(var(--max), calc(100% - 32px));
+      width:100%;
+      max-width:var(--max);
       margin:0 auto;
+      padding:0 16px;
     }
 
     .card{
@@ -61,15 +132,32 @@ const { title = "Gov Portal", lang = "sw" } = Astro.props;
       box-shadow:var(--shadow);
     }
 
-    @media (max-width: 900px){
+    ::-webkit-scrollbar{
+      width:10px;
+    }
+
+    ::-webkit-scrollbar-track{
+      background:#edf1f5;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background:#082b55;
+      border-radius:999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover{
+      background:#f6a313;
+    }
+
+    @media (max-width:900px){
       .container{
-        width:min(var(--max), calc(100% - 20px));
+        padding:0 14px;
       }
     }
 
-    @media (max-width: 640px){
+    @media (max-width:640px){
       .container{
-        width:min(var(--max), calc(100% - 16px));
+        padding:0 12px;
       }
     }
   </style>
@@ -78,4 +166,5 @@ const { title = "Gov Portal", lang = "sw" } = Astro.props;
 <body>
   <slot />
 </body>
+
 </html>
