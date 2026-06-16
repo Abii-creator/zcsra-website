@@ -1,5 +1,5 @@
 ---
-const { lang = "sw" } = Astro.props;
+const { lang = "en" } = Astro.props;
 
 // =====================================================
 // LANGUAGE CHECK
@@ -29,11 +29,11 @@ const events = isSw ? "/sw/events/" : "/en/events/";
 const contact = isSw ? "/sw/contact/" : "/en/contact/";
 
 // =====================================================
-// LANGUAGE LINKS
-// Shows KISW | ENG instead of a single language button
+// LANGUAGE SWITCH
+// Shows only the opposite language option
 // =====================================================
-const swHref = "/sw/";
-const enHref = "/en/";
+const switchHref = isSw ? "/en/" : "/sw/";
+const switchLabel = isSw ? "ENG" : "SWA";
 ---
 
 <header class="header">
@@ -81,23 +81,17 @@ const enHref = "/en/";
     ====================================================== -->
     <div class="right-area">
 
-      <div class="language-switch" aria-label="Language switcher">
-        <a
-          href={swHref}
-          class={isSw ? "active" : ""}
-        >
-          KISW
-        </a>
-
-        <span>|</span>
-
-        <a
-          href={enHref}
-          class={!isSw ? "active" : ""}
-        >
-          ENG
-        </a>
-      </div>
+      <!-- =====================================================
+           LANGUAGE SWITCHER
+           Shows only the opposite language option
+      ====================================================== -->
+      <a
+        href={switchHref}
+        class="language-switch"
+        aria-label="Switch Language"
+      >
+        {switchLabel}
+      </a>
 
       <a href={home} class="header-logo right-logo" aria-label="ZCSRA Home">
         <img
@@ -183,27 +177,15 @@ const enHref = "/en/";
   border-radius:999px;
   background:#f3f4f6;
   border:1px solid #e8edf3;
-  color:#5f6b7a;
+  color:#082b55;
   font-size:12px;
   font-weight:900;
   line-height:1;
-}
-
-.language-switch a{
-  color:#5f6b7a;
   text-decoration:none;
 }
 
-.language-switch a.active{
-  color:#082b55;
-}
-
-.language-switch a:hover{
+.language-switch:hover{
   color:#f6a313;
-}
-
-.language-switch span{
-  color:#b4bdc9;
 }
 
 /* =====================================================

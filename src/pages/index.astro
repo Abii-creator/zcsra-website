@@ -1,10 +1,25 @@
 ---
-const defaultLang = "sw";
+// =====================================================
+// DEFAULT LANGUAGE
+// English is the default language
+// =====================================================
+const defaultLang = "en";
 ---
+
 <html>
   <head>
+
+    <!-- =====================================================
+         AUTO REDIRECT TO DEFAULT LANGUAGE
+    ====================================================== -->
     <meta http-equiv="refresh" content={`0; url=/${defaultLang}`} />
+
+    <!-- =====================================================
+         CANONICAL URL
+    ====================================================== -->
     <link rel="canonical" href={`/${defaultLang}`} />
+
   </head>
+
   <body></body>
 </html>

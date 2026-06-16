@@ -70,12 +70,19 @@ import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
 </BaseLayout>
 
 <style>
+
+/* =====================================================
+   DIRECTOR MESSAGE AND ANNOUNCEMENTS SECTION
+===================================================== */
 .home-dual{
   padding:26px 0 28px;
   background:#ffffff;
   overflow:visible;
 }
 
+/* =====================================================
+   HOME TWO-COLUMN GRID
+===================================================== */
 .home-grid{
   display:grid;
   grid-template-columns:minmax(0, 1fr) 390px;
@@ -85,12 +92,18 @@ import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
   width:100%;
 }
 
+/* =====================================================
+   GRID CHILDREN SAFETY
+===================================================== */
 .home-main,
 .home-side{
   min-width:0;
   overflow:visible;
 }
 
+/* =====================================================
+   COMPONENT WIDTH AND HEIGHT ALIGNMENT
+===================================================== */
 .home-grid :global(.md-section),
 .home-grid :global(.ann-section){
   width:100%;
@@ -107,6 +120,9 @@ import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
   height:100%;
 }
 
+/* =====================================================
+   ANNOUNCEMENT SIDE ALIGNMENT
+===================================================== */
 .home-side{
   display:flex;
 }
@@ -120,16 +136,27 @@ import WhatsAppFloat from "../../components/WhatsAppFloat.astro";
   overflow:visible;
 }
 
+/* =====================================================
+   TABLET RESPONSIVE DESIGN
+===================================================== */
 @media (max-width:1150px){
+
   .home-grid{
     grid-template-columns:1fr;
     column-gap:0;
   }
+
 }
 
+/* =====================================================
+   MOBILE RESPONSIVE DESIGN
+===================================================== */
 @media (max-width:640px){
+
   .home-dual{
     padding:20px 0 24px;
   }
+
 }
+
 </style>
