@@ -1,0 +1,338 @@
+---
+const { lang = "sw" } = Astro.props;
+
+const isSw = lang === "sw";
+
+const title = isSw ? "Maktaba ya Picha" : "Photo Gallery";
+const subtitle = isSw
+  ? "Tazama picha za shughuli, matukio na huduma za ZCSRA."
+  : "View photos from ZCSRA activities, events and services.";
+
+const buttonLabel = isSw ? "Tazama Picha Zote" : "View Full Gallery";
+const galleryLink = isSw ? "/sw/gallery/" : "/en/gallery/";
+
+const images = [
+  "/images/gallery/1.jpg",
+  "/images/gallery/2.jpg",
+  "/images/gallery/3.jpg",
+  "/images/gallery/4.jpg",
+  "/images/gallery/5.jpg",
+  "/images/gallery/6.jpg",
+  "/images/gallery/7.jpg",
+  "/images/gallery/8.jpg",
+  "/images/gallery/9.jpg",
+  "/images/gallery/10.jpg",
+  "/images/gallery/11.jpg",
+  "/images/gallery/12.jpg",
+  "/images/gallery/13.jpg"
+];
+---
+
+<section class="gallery-slider">
+
+  <div class="container">
+
+    <!-- =====================================================
+         GALLERY HEADER
+    ====================================================== -->
+    <div class="gallery-header">
+
+      <div>
+        <span class="gallery-kicker">
+          {isSw ? "Picha za Taasisi" : "Institutional Photos"}
+        </span>
+
+        <h2>
+          {title}
+        </h2>
+
+        <p>
+          {subtitle}
+        </p>
+      </div>
+
+      <a href={galleryLink} class="gallery-link">
+        {buttonLabel}
+      </a>
+
+    </div>
+
+    <!-- =====================================================
+         SLIDER CONTAINER
+    ====================================================== -->
+    <div class="slider-container">
+
+      <div class="slides" id="gallerySlides">
+
+        {images.map((image, index) => (
+          <div class={`slide ${index === 0 ? "active" : ""}`}>
+            <img
+              src={image}
+              alt={`ZCSRA Gallery ${index + 1}`}
+            />
+          </div>
+        ))}
+
+      </div>
+
+      <button class="nav prev" id="galleryPrevBtn" type="button">
+        ❮
+      </button>
+
+      <button class="nav next" id="galleryNextBtn" type="button">
+        ❯
+      </button>
+
+      <div class="dots" id="galleryDots">
+
+        {images.map((_, index) => (
+          <button
+            class={`dot ${index === 0 ? "active" : ""}`}
+            data-index={index}
+            type="button"
+            aria-label={`Go to slide ${index + 1}`}
+          ></button>
+        ))}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const slides =
+    document.querySelectorAll(".gallery-slider .slide");
+
+  const dots =
+    document.querySelectorAll(".gallery-slider .dot");
+
+  const prevBtn =
+    document.getElementById("galleryPrevBtn");
+
+  const nextBtn =
+    document.getElementById("galleryNextBtn");
+
+  let current = 0;
+
+  function showSlide(index: number) {
+  slides.forEach((slide) => {
+    slide.classList.remove("active");
+  });
+
+  dots.forEach((dot) => {
+    dot.classList.remove("active");
+  });
+
+  slides[index]?.classList.add("active");
+  dots[index]?.classList.add("active");
+
+  current = index;
+}
+
+  function nextSlide() {
+    let next = current + 1;
+
+    if (next >= slides.length) {
+      next = 0;
+    }
+
+    showSlide(next);
+  }
+
+  function prevSlide() {
+    let prev = current - 1;
+
+    if (prev < 0) {
+      prev = slides.length - 1;
+    }
+
+    showSlide(prev);
+  }
+
+  nextBtn?.addEventListener("click", nextSlide);
+  prevBtn?.addEventListener("click", prevSlide);
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const index = Number(
+        dot.getAttribute("data-index")
+      );
+
+      showSlide(index);
+    });
+  });
+
+  setInterval(() => {
+    nextSlide();
+  }, 5000);
+});
+</script>
+
+<style>
+.gallery-slider{
+  width:100%;
+  background:#ffffff;
+  padding:0 0 34px;
+}
+
+.gallery-header{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:22px;
+  margin-bottom:18px;
+}
+
+.gallery-kicker{
+  display:inline-block;
+  margin-bottom:7px;
+  color:#f6a313;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.gallery-header h2{
+  margin:0;
+  color:#082b55;
+  font-size:32px;
+  font-weight:900;
+  line-height:1.2;
+}
+
+.gallery-header p{
+  margin:8px 0 0;
+  color:#5f6b7a;
+  font-size:15px;
+  line-height:1.7;
+}
+
+.gallery-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  padding:12px 18px;
+  border-radius:999px;
+  background:#082b55;
+  color:#ffffff;
+  font-size:13px;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.gallery-link:hover{
+  background:#f6a313;
+}
+
+.slider-container{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+}
+
+.slides{
+  position:relative;
+  width:100%;
+}
+
+.slide{
+  display:none;
+  width:100%;
+}
+
+.slide.active{
+  display:block;
+}
+
+.slide img{
+  width:100%;
+  height:520px;
+  display:block;
+  object-fit:cover;
+  border-radius:24px;
+}
+
+.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:52px;
+  height:52px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:22px;
+  background:rgba(8,43,85,.85);
+  color:#ffffff;
+  z-index:5;
+}
+
+.prev{
+  left:20px;
+}
+
+.next{
+  right:20px;
+}
+
+.nav:hover{
+  background:#f6a313;
+}
+
+.dots{
+  position:absolute;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+  z-index:5;
+}
+
+.dot{
+  width:12px;
+  height:12px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  background:rgba(255,255,255,.6);
+}
+
+.dot.active{
+  background:#f6a313;
+}
+
+@media (max-width:900px){
+  .gallery-header{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .slide img{
+    height:380px;
+  }
+}
+
+@media (max-width:640px){
+  .gallery-header h2{
+    font-size:26px;
+  }
+
+  .slide img{
+    height:250px;
+    border-radius:18px;
+  }
+
+  .nav{
+    width:42px;
+    height:42px;
+    font-size:18px;
+  }
+}
+</style>
