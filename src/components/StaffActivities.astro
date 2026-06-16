@@ -1,49 +1,63 @@
 ---
-const { lang = "sw" } = Astro.props;
+const { lang = "en" } = Astro.props;
 
+// =====================================================
+// LANGUAGE CHECK
+// Determines whether current page is Swahili or English
+// =====================================================
 const isSw = lang === "sw";
 
+// =====================================================
+// SECTION TEXT
+// Changes section title and subtitle by language
+// =====================================================
 const title = isSw ? "Shughuli za Wafanyakazi" : "Staff Activities";
+
 const subtitle = isSw
   ? "Fuatilia shughuli, mafunzo na kazi za ndani zinazolenga kuboresha utoaji wa huduma kwa wananchi."
   : "Follow internal activities, training and institutional work aimed at improving public service delivery.";
 
 const viewAll = isSw ? "Tazama Zote" : "View All";
+
 const listHref = isSw ? "/sw/staff-activities/" : "/en/staff-activities/";
 
+// =====================================================
+// STAFF ACTIVITIES DATA
+// Uses local images from public/images/staff/
+// =====================================================
 const items = isSw
   ? [
       {
         title: "Mafunzo ya Mfumo wa Usajili",
         text: "Watumishi walipata mafunzo kuhusu matumizi ya mfumo mpya wa usajili.",
-        img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/staff/02.jpg"
       },
       {
         title: "Mkutano wa Ndani wa Taasisi",
         text: "Kikao cha ndani cha wafanyakazi kujadili maendeleo ya huduma kwa wananchi.",
-        img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/staff/05.jpg"
       },
       {
         title: "Warsha ya Uboreshaji wa Huduma",
         text: "Warsha ya kujadili mbinu mpya za kuboresha utoaji wa huduma.",
-        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/staff/06.jpg"
       }
     ]
   : [
       {
         title: "Registration System Training",
         text: "Staff received training on the use of the new civil registration system.",
-        img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/staff/02.jpg"
       },
       {
         title: "Internal Institutional Meeting",
         text: "An internal meeting was held to discuss improvements in service delivery.",
-        img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/staff/05.jpg"
       },
       {
         title: "Service Improvement Workshop",
         text: "Workshop focused on strategies to improve service delivery to citizens.",
-        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/staff/06.jpg"
       }
     ];
 ---
@@ -90,6 +104,7 @@ const items = isSw
               src={item.img}
               alt={item.title}
               class="staff-image"
+              loading="lazy"
             />
           </div>
 
@@ -201,6 +216,7 @@ const items = isSw
 
 .staff-image-wrap{
   overflow:hidden;
+  background:#f3f4f6;
 }
 
 .staff-image{
@@ -272,4 +288,5 @@ const items = isSw
   }
 
 }
+
 </style>
