@@ -1,36 +1,50 @@
 ---
-const { lang = "sw" } = Astro.props;
+const { lang = "en" } = Astro.props;
 
+// =====================================================
+// LANGUAGE CHECK
+// Determines whether current page is Swahili or English
+// =====================================================
 const isSw = lang === "sw";
 
+// =====================================================
+// SECTION TEXT
+// Changes section title and subtitle by language
+// =====================================================
 const title = isSw ? "Matukio ya Hivi Karibuni" : "Recent Events";
+
 const subtitle = isSw
   ? "Angalia shughuli, mikutano, warsha na matukio rasmi yanayohusiana na huduma za ZCSRA."
   : "View official activities, meetings, workshops and events related to ZCSRA services.";
 
 const readMore = isSw ? "Soma Zaidi" : "Read More";
 const viewAll = isSw ? "Tazama Yote" : "View All";
+
 const listHref = isSw ? "/sw/events/" : "/en/events/";
 
+// =====================================================
+// RECENT EVENTS DATA
+// Uses local event images from public/images/events/
+// =====================================================
 const items = isSw
   ? [
       {
         title: "Semina ya Usajili wa Kuzaliwa",
         date: "15 Machi 2024",
         text: "Semina kwa wadau kuhusu umuhimu wa usajili wa kuzaliwa na upatikanaji wa vyeti rasmi.",
-        img: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/events/01.jpg"
       },
       {
         title: "Warsha ya Mafunzo ya Mfumo",
         date: "3 Aprili 2024",
         text: "Warsha kwa watumishi kuhusu matumizi ya mfumo wa usajili wa matukio ya kijamii.",
-        img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/events/03.jpg"
       },
       {
         title: "Mkutano wa Wadau",
         date: "20 Mei 2024",
         text: "Mkutano maalum wa wadau kujadili maboresho ya utoaji wa huduma na upatikanaji wa taarifa.",
-        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/events/07.jpg"
       }
     ]
   : [
@@ -38,19 +52,19 @@ const items = isSw
         title: "Birth Registration Seminar",
         date: "15 March 2024",
         text: "A seminar for stakeholders on the importance of birth registration and access to official certificates.",
-        img: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/events/01.jpg"
       },
       {
         title: "System Training Workshop",
         date: "3 April 2024",
         text: "A workshop for officers on the use of the civil registration system and service processes.",
-        img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/events/03.jpg"
       },
       {
         title: "Stakeholders Meeting",
         date: "20 May 2024",
         text: "A special stakeholders meeting to discuss service delivery improvements and public access to information.",
-        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+        img: "/images/events/07.jpg"
       }
     ];
 ---
@@ -68,7 +82,9 @@ const items = isSw
           {isSw ? "Shughuli za Taasisi" : "Institutional Activities"}
         </span>
 
-        <h2 class="events-title">{title}</h2>
+        <h2 class="events-title">
+          {title}
+        </h2>
 
         <p class="events-subtitle">
           {subtitle}
@@ -87,6 +103,7 @@ const items = isSw
     <div class="events-grid">
 
       {items.map((item) => (
+
         <article class="event-card">
 
           <div class="event-image-wrap">
@@ -94,6 +111,7 @@ const items = isSw
               src={item.img}
               alt={item.title}
               class="event-image"
+              loading="lazy"
             />
 
             <span class="event-date">
@@ -118,6 +136,7 @@ const items = isSw
           </div>
 
         </article>
+
       ))}
 
     </div>
@@ -213,6 +232,7 @@ const items = isSw
 .event-image-wrap{
   position:relative;
   overflow:hidden;
+  background:#e8edf3;
 }
 
 .event-image{
@@ -318,4 +338,5 @@ const items = isSw
   }
 
 }
+
 </style>
